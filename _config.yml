@@ -2,12 +2,13 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+
 # Site
-title: hugo's blog
-subtitle: record
-description: Eileen
+title: Hugo's blog
+subtitle: 把爱刻在石头上
+description: 乃琳的Tom
 keywords: blog
-author: lyx
+author: luyuxuan
 language: zh-CN
 timezone: ''
 
@@ -97,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -105,3 +106,10 @@ deploy:
   type: git
   repo: git@github.com:luyuxuan-hugo/luyuxuan-hugo.github.io.git
   branch: master
+
+#search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
