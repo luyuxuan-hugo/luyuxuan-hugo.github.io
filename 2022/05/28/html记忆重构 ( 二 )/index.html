@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"luyuxuan-hugo.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="说起莎乐美,月亮就会出现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html记忆重构(二)">
+<meta property="og:url" content="https://luyuxuan-hugo.github.io/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/index.html">
+<meta property="og:site_name" content="Hugo&#39;s Blog">
+<meta property="og:description" content="说起莎乐美,月亮就会出现">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-28T15:25:44.000Z">
+<meta property="article:modified_time" content="2023-06-23T08:44:37.347Z">
+<meta property="article:author" content="luyuxuan">
+<meta property="article:tag" content="Html5">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://luyuxuan-hugo.github.io/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://luyuxuan-hugo.github.io/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/","path":"2022/05/28/html记忆重构 ( 二 )/","title":"html记忆重构(二)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>html记忆重构(二) | Hugo's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hugo's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">把爱刻在石头上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#style%E6%A0%87%E7%AD%BE"><span class="nav-number">1.</span> <span class="nav-text">style标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">1.1.</span> <span class="nav-text">标签选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">类选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#div%E7%9A%84%E5%9D%97%E5%B1%9E%E6%80%A7%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E7%94%BB%E7%9B%92%E5%AD%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">div的块属性应用——画盒子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E7%B1%BB%E5%90%8D%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">多类名应用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">id选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">通配符选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">字体属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.5.1.</span> <span class="nav-text">一般格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%88%E5%B9%B6"><span class="nav-number">1.5.2.</span> <span class="nav-text">合并</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-decoration"><span class="nav-number">1.6.</span> <span class="nav-text">text-decoration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-indent%E5%AD%97%E7%AC%A6%E7%BC%A9%E8%BF%9B"><span class="nav-number">1.7.</span> <span class="nav-text">text-indent字符缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E9%97%B4%E8%B7%9D"><span class="nav-number">1.8.</span> <span class="nav-text">行间距</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">外部样式表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#emmet%E8%AF%AD%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">emmet语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%A9%E5%86%99"><span class="nav-number">2.1.1.</span> <span class="nav-text">缩写</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyuxuan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">luyuxuan</p>
+  <div class="site-description" itemprop="description">in sorrow,in joy</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luyuxuan-hugo.github.io/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="luyuxuan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hugo's Blog">
+      <meta itemprop="description" content="in sorrow,in joy">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="html记忆重构(二) | Hugo's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          html记忆重构(二)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-28 23:25:44" itemprop="dateCreated datePublished" datetime="2022-05-28T23:25:44+08:00">2022-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-23 16:44:37" itemprop="dateModified" datetime="2023-06-23T16:44:37+08:00">2023-06-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div style="font-size: 35px; color: #9ac8e2;text-align: center">说起莎乐美,月亮就会出现</div>
+
+<span id="more"></span>
+
+<hr>
+<p>开始CSS</p>
+<h3 id="style标签"><a href="#style标签" class="headerlink" title="style标签"></a>style标签</h3><p>直接在<code>&lt;/head&gt;</code>和<code>&lt;/title&gt;</code>之间添加style标签即可在其中设置样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">          </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h4><p>可以在style中输入要选择的标签,单独为其设置样式<br>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"> <span class="selector-tag">div</span> &#123;        </span></span><br><span class="line"><span class="language-css">      <span class="attribute">color</span>:<span class="number">#576690</span> ;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">font-size</span>: <span class="number">24px</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样就将页面中所有的div标签中的内容颜色和字体大小设置好了.</p>
+<hr>
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><p>可以在style中输入要选择的类,单独为其设置样式<br>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.header</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">font-size</span>: <span class="number">45px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后只需要在想要添加这种属性的标签内加入class&#x3D;”classname”即可<br>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="div的块属性应用——画盒子"><a href="#div的块属性应用——画盒子" class="headerlink" title="div的块属性应用——画盒子"></a>div的块属性应用——画盒子</h5><p>在style属性中给div设置一个高height和width再加上背景颜色就可以画出一个盒子了,利用类选择器给不同的div标签设置不同的类,就可以画出多个盒子<br>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width:20px;height:20px;background-color:red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div style="width:20px;height:20px;background-color:red;display:inline-block"></div>
+<div style="width:20px;height:20px;background-color:blue;display:inline-block"></div>
+
+<blockquote>
+<p>也可以这样在标签内单独设置样式,只适用于要设置样式较少的情况<br>由于div是block属性,独占一行,这里设置display:inline-block 将属性转换为行内块,就可以在一行同时显示多个div</p>
+</blockquote>
+<hr>
+<h5 id="多类名应用"><a href="#多类名应用" class="headerlink" title="多类名应用"></a>多类名应用</h5><p>可以给同一个标签添加多个类,只需要在两个类之间加上一个空格即可<br>例如:<br>        .a{</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#125;</span><br><span class="line">.b&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.c&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a b c&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><p>id选择器的使用与类选择器相似,只需要在style标签内添加#idname {},在需要使用的标签内添加id&#x3D;”idname”即可,在css中使用不多</p>
+<blockquote>
+<p>与类选择器的区别</p>
+<ol>
+<li>id选择器只能使用一次, 类选择器可以无限使用</li>
+<li>一个标签可以使用多个类选择器,但是只能使用一个id选择器<blockquote>
+<p>综上,一般不在css中使用id选择器,留在js中使用</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<hr>
+<h4 id="通配符选择器"><a href="#通配符选择器" class="headerlink" title="通配符选择器"></a>通配符选择器</h4><p>修改所有标签的属性<br>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#123; &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一般用于修改页面的边距</p>
+</blockquote>
+<hr>
+<h4 id="字体属性"><a href="#字体属性" class="headerlink" title="字体属性"></a>字体属性</h4><hr>
+<h5 id="一般格式"><a href="#一般格式" class="headerlink" title="一般格式"></a>一般格式</h5><p>常用的字体属性如下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font-size</span>:<span class="number">16px</span>; 字体大小</span><br><span class="line"><span class="attribute">font-family</span>:<span class="string">&#x27;宋体&#x27;</span>; 字体</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>默认为微软雅黑</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>:<span class="number">#ffffff</span>;,字体颜色</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>还可以用rgb(255,255,255)这种格式</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font-style</span>:normal/italic; 字体样式,默认<span class="attribute">normal</span></span><br><span class="line"><span class="attribute">font-weight</span>: number;字体粗细,数字越大越粗</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h5><p> 可以用如下格式合并:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font</span>: normal <span class="number">700</span> <span class="number">25px</span>/<span class="number">25px</span> <span class="string">&#x27;宋体&#x27;</span></span><br><span class="line"><span class="comment">/* font: font-style font-weigth font-size/line-height font-family*/</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>font-size和line-height相等的话,字体就是行内居中<br>font-size和font-family为必须属性,style和weight可以交换位置</p>
+</blockquote>
+<hr>
+<h4 id="text-decoration"><a href="#text-decoration" class="headerlink" title="text-decoration"></a>text-decoration</h4><p>一般用于修改链接的下划线<br>一般情况下,默认给<code>&lt;a&gt;</code>添加属性:decoration:underline,如果不想要这个下划线,只需要添加  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<blockquote>
+<p>text-decoration:line-through 是删除线</p>
+</blockquote>
+<hr>
+<h4 id="text-indent字符缩进"><a href="#text-indent字符缩进" class="headerlink" title="text-indent字符缩进"></a>text-indent字符缩进</h4><p>一般用于段落的首行缩进,一般中文是缩进两个字,如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-indent</span>:<span class="number">2em</span>; <span class="comment">/*em表示字,也可以用px*/</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="行间距"><a href="#行间距" class="headerlink" title="行间距"></a>行间距</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*行间距= 上边距</span><br><span class="line">          +字高</span><br><span class="line">          +下边距</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>只需要设置line-height和font-size就可以确定行间距(不同标签之间不适用)<br>例如:line-height:2.5 表示行高为字体大小的2.5倍,此时行间距就等于字体大小的0.75倍</p>
+<hr>
+<h3 id="外部样式表"><a href="#外部样式表" class="headerlink" title="外部样式表"></a>外部样式表</h3><p>将style中的内容写在一个新的文件中,该文件的后缀名为.css,只需要在title下面加上这样一行:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>即可将该样式表应用到本页面</p>
+<h4 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h4><h5 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h5><p>打游戏去咯,happy,开摆  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>luyuxuan
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://luyuxuan-hugo.github.io/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/" title="html记忆重构(二)">https://luyuxuan-hugo.github.io/2022/05/28/html记忆重构 ( 二 )/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Html5/" rel="tag"># Html5</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/27/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84/" rel="prev" title="html记忆重构">
+                  <i class="fa fa-chevron-left"></i> html记忆重构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/" rel="next" title="html记忆重构(三)">
+                  html记忆重构(三) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyuxuan</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">23k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://lib.baomitu.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

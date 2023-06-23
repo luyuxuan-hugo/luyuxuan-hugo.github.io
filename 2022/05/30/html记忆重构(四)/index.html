@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"luyuxuan-hugo.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="那一刻我们的吻,像轰鸣的月相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html记忆重构(四)">
+<meta property="og:url" content="https://luyuxuan-hugo.github.io/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/index.html">
+<meta property="og:site_name" content="Hugo&#39;s Blog">
+<meta property="og:description" content="那一刻我们的吻,像轰鸣的月相">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-30T08:54:32.000Z">
+<meta property="article:modified_time" content="2023-06-23T08:44:58.747Z">
+<meta property="article:author" content="luyuxuan">
+<meta property="article:tag" content="Html5">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://luyuxuan-hugo.github.io/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://luyuxuan-hugo.github.io/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/","path":"2022/05/30/html记忆重构(四)/","title":"html记忆重构(四)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>html记忆重构(四) | Hugo's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hugo's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">把爱刻在石头上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E4%BB%A3%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">后代选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">子选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E9%9B%86%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">并集选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">链接伪类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#focus%E8%AF%AD%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">focus语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0-x2F-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0-x2F-%E8%A1%8C%E5%86%85%E5%9D%97%E5%85%83%E7%B4%A0"><span class="nav-number">6.</span> <span class="nav-text">块级元素&#x2F;行内元素&#x2F;行内块元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9B%B8%E5%85%B3"><span class="nav-number">7.</span> <span class="nav-text">背景相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2"><span class="nav-number">7.1.</span> <span class="nav-text">背景颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87"><span class="nav-number">7.2.</span> <span class="nav-text">背景图片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%B9%B3%E9%93%BA"><span class="nav-number">7.2.1.</span> <span class="nav-text">背景平铺</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">7.2.2.</span> <span class="nav-text">背景图片的位置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E9%99%84%E7%9D%80-x2F-%E8%83%8C%E6%99%AF%E5%9B%BE%E5%83%8F%E5%9B%BA%E5%AE%9A"><span class="nav-number">7.2.3.</span> <span class="nav-text">背景附着&#x2F;背景图像固定</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7%E7%9A%84%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95"><span class="nav-number">7.3.</span> <span class="nav-text">背景属性的复合写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rgba"><span class="nav-number">7.4.</span> <span class="nav-text">rgba</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyuxuan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">luyuxuan</p>
+  <div class="site-description" itemprop="description">in sorrow,in joy</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luyuxuan-hugo.github.io/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="luyuxuan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hugo's Blog">
+      <meta itemprop="description" content="in sorrow,in joy">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="html记忆重构(四) | Hugo's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          html记忆重构(四)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-30 16:54:32" itemprop="dateCreated datePublished" datetime="2022-05-30T16:54:32+08:00">2022-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-23 16:44:58" itemprop="dateModified" datetime="2023-06-23T16:44:58+08:00">2023-06-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
+
+<span id="more"></span>
+
+<hr>
+<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><p>可以精确地选择到标签中的标签.例如有多个li,我只想修改无序表中的li的样式,只需要在类选择器li的前面加上ul,例如输入</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: pink;</span><br><span class="line">        <span class="attribute">font-size</span>: xx-large;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>就可以将无序表中的字体颜色和字体大小修改成想要的样式</p>
+<blockquote>
+<p>如果只想修改li中的某一类标签,可以继续选择,只需要在后面加上标签名即可</p>
+</blockquote>
+<hr>
+<p>如果有多个ul,而我们只想修改某一个ul中的li,只需要给该ul添加一个类,同时将ul改成.classname即可</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: none;</span><br><span class="line">        <span class="attribute">color</span>: orange;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>格式如下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span>&gt;<span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">25px</span></span><br><span class="line">    line-height:<span class="number">25px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在父类的后面加上<code>&gt;</code>,则选择最近一级的子元素,亲儿子元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>亲儿子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>孙子<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h3><p>要给多个类选择器添加同样的属性,只需要用<code>,</code>即可,如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="链接伪类选择器"><a href="#链接伪类选择器" class="headerlink" title="链接伪类选择器"></a>链接伪类选择器</h3><p>以链接为例,可以修改其各个状态的属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">     <span class="attribute">text-decoration</span>: none;//去掉下划线</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/* 未访问过的链接  a:link*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 访问过的链接  a:visited*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#576690</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标经过的链接 a:hover */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标按下还未弹起的链接 a:active */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aqua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里只修改了链接的各种状态下的颜色.</p>
+<hr>
+<h3 id="focus语法"><a href="#focus语法" class="headerlink" title="focus语法"></a>focus语法</h3><p>为input标签添加focus属性,在聚焦该input标签时的属性]</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">       <span class="attribute">color</span>: pink;</span><br><span class="line">       <span class="attribute">background-color</span>: <span class="number">#576690</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>未聚焦时,文本框为白色背景,聚焦后,背景颜色变为#576690,字体颜色变为pink</p>
+</blockquote>
+<hr>
+<h3 id="块级元素-x2F-行内元素-x2F-行内块元素"><a href="#块级元素-x2F-行内元素-x2F-行内块元素" class="headerlink" title="块级元素&#x2F;行内元素&#x2F;行内块元素"></a>块级元素&#x2F;行内元素&#x2F;行内块元素</h3><p>块元素典型的是div,可以转换为其他两种形式.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: block;转换为块元素</span><br><span class="line"><span class="attribute">display</span>: inline;转换为行内元素</span><br><span class="line"><span class="attribute">display</span>: inline-block;转换为行内块元素</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>tips: 将行高设置为块的高度即可实现单行文字垂直居中</p>
+</blockquote>
+<hr>
+<h3 id="背景相关"><a href="#背景相关" class="headerlink" title="背景相关"></a>背景相关</h3><h4 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="number">#576690</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>默认为transparent  </p>
+</blockquote>
+<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">绝对路径/相对路径/网址</span>)    </span><br></pre></td></tr></table></figure>
+
+<h5 id="背景平铺"><a href="#背景平铺" class="headerlink" title="背景平铺"></a>背景平铺</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span>: repeat; //默认横纵都平铺  </span><br><span class="line"><span class="attribute">background-repeat</span>: no-repeat; //不平铺   <span class="attribute">background-repeat</span>: repeat-x; //沿横向平铺 <span class="attribute">background-repeat</span>: repeat-y;  //沿纵向平铺  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>背景图片可以盖住背景颜色  </p>
+</blockquote>
+<h5 id="背景图片的位置"><a href="#背景图片的位置" class="headerlink" title="背景图片的位置"></a>背景图片的位置</h5><blockquote>
+<p>比直接插入图片更好控制图片的位置  </p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-position</span>: x y;</span><br><span class="line">//可以是方位名词也可以是精确单位   </span><br><span class="line">//方位名词: center top bottom left right  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方位词不用分先后<br>如果方位词只有一个 另一个默认居中对齐<br>    &#x2F;&#x2F;精确单位: 百分数 或者由数字和单位组成的长度值<br>严格遵守x在前,y在后,如果只指定了一个值,就是x的值,y默认居中对齐  </p>
+</blockquote>
+<h5 id="背景附着-x2F-背景图像固定"><a href="#背景附着-x2F-背景图像固定" class="headerlink" title="背景附着&#x2F;背景图像固定"></a>背景附着&#x2F;背景图像固定</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span>:scroll //随内容滚动而滚动  </span><br><span class="line">background-attachment:fixed //背景图像固定  </span><br></pre></td></tr></table></figure>
+
+<h4 id="背景属性的复合写法"><a href="#背景属性的复合写法" class="headerlink" title="背景属性的复合写法"></a>背景属性的复合写法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: 颜色 图片地址 平铺 图像滚动 图片位置 </span><br><span class="line">//没有先后顺序  </span><br></pre></td></tr></table></figure>
+
+<h4 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)  </span><br><span class="line">//在rgb的基础上加上了<span class="built_in">alpha</span>(透明度)这个参数 <span class="number">0</span>~<span class="number">1</span> <span class="number">0</span>表示完全透明 <span class="number">1</span>表示完全不透明  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>0.5可以写成.5</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>luyuxuan
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://luyuxuan-hugo.github.io/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/" title="html记忆重构(四)">https://luyuxuan-hugo.github.io/2022/05/30/html记忆重构(四)/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Html5/" rel="tag"># Html5</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/" rel="prev" title="html记忆重构(三)">
+                  <i class="fa fa-chevron-left"></i> html记忆重构(三)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/06/26/quick-sort/" rel="next" title="quick_sort/merge_sort/二分">
+                  quick_sort/merge_sort/二分 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyuxuan</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">23k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://lib.baomitu.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

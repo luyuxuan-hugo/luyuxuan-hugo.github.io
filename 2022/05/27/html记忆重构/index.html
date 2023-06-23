@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"luyuxuan-hugo.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="寂静的雨夜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html记忆重构">
+<meta property="og:url" content="https://luyuxuan-hugo.github.io/2022/05/27/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84/index.html">
+<meta property="og:site_name" content="Hugo&#39;s Blog">
+<meta property="og:description" content="寂静的雨夜">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-27T15:36:23.000Z">
+<meta property="article:modified_time" content="2023-06-23T08:44:42.959Z">
+<meta property="article:author" content="luyuxuan">
+<meta property="article:tag" content="Html5">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://luyuxuan-hugo.github.io/2022/05/27/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://luyuxuan-hugo.github.io/2022/05/27/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84/","path":"2022/05/27/html记忆重构/","title":"html记忆重构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>html记忆重构 | Hugo's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hugo's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">把爱刻在石头上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E6%A0%87%E7%AD%BE"><span class="nav-number">1.1.</span> <span class="nav-text">标题标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD%E6%A0%87%E7%AD%BE"><span class="nav-number">1.2.</span> <span class="nav-text">段落标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%A2%E8%A1%8C%E6%A0%87%E7%AD%BE"><span class="nav-number">1.3.</span> <span class="nav-text">换行标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E7%B2%97"><span class="nav-number">1.4.</span> <span class="nav-text">加粗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%80%BE%E6%96%9C"><span class="nav-number">1.5.</span> <span class="nav-text">倾斜</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">1.6.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="nav-number">1.7.</span> <span class="nav-text">下划线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E5%9D%97%E5%85%83%E7%B4%A0"><span class="nav-number">1.8.</span> <span class="nav-text">分区块元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B6%85%E9%93%BE%E6%8E%A5%E6%A0%87%E7%AD%BE"><span class="nav-number">1.9.</span> <span class="nav-text">超链接标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.10.</span> <span class="nav-text">锚点定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A%E6%A0%87%E7%AD%BE"><span class="nav-number">1.11.</span> <span class="nav-text">注释标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E4%BA%8E%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.12.</span> <span class="nav-text">大于符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E4%BA%8E%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.13.</span> <span class="nav-text">小于符号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-number">2.</span> <span class="nav-text">表格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">无序列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">有序列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95"><span class="nav-number">3.</span> <span class="nav-text">表单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#input%E6%A0%87%E7%AD%BE"><span class="nav-number">3.1.</span> <span class="nav-text">input标签</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#text%E6%96%87%E6%9C%AC%E6%A1%86"><span class="nav-number">3.1.1.</span> <span class="nav-text">text文本框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#password%E5%AF%86%E7%A0%81%E6%A1%86"><span class="nav-number">3.1.2.</span> <span class="nav-text">password密码框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#radio%E5%8D%95%E9%80%89%E6%A1%86"><span class="nav-number">3.1.3.</span> <span class="nav-text">radio单选框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#checkbox%E5%A4%8D%E9%80%89%E6%A1%86"><span class="nav-number">3.1.4.</span> <span class="nav-text">checkbox复选框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#button%E6%8C%89%E9%92%AE"><span class="nav-number">3.1.5.</span> <span class="nav-text">button按钮</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#file%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.6.</span> <span class="nav-text">file上传文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#submit%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95"><span class="nav-number">3.1.7.</span> <span class="nav-text">submit提交表单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reset%E9%87%8D%E7%BD%AE"><span class="nav-number">3.1.8.</span> <span class="nav-text">reset重置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#select%E4%B8%8B%E6%8B%89%E8%A1%A8%E5%8D%95"><span class="nav-number">3.1.9.</span> <span class="nav-text">select下拉表单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea%E6%96%87%E6%9C%AC%E5%9F%9F"><span class="nav-number">3.1.10.</span> <span class="nav-text">textarea文本域</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="luyuxuan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">luyuxuan</p>
+  <div class="site-description" itemprop="description">in sorrow,in joy</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luyuxuan-hugo.github.io/2022/05/27/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="luyuxuan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hugo's Blog">
+      <meta itemprop="description" content="in sorrow,in joy">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="html记忆重构 | Hugo's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          html记忆重构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-27 23:36:23" itemprop="dateCreated datePublished" datetime="2022-05-27T23:36:23+08:00">2022-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-23 16:44:42" itemprop="dateModified" datetime="2023-06-23T16:44:42+08:00">2023-06-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div style="font-size: 35px; color: #9ac8e2;text-align: center">寂静的雨夜</div>  
+
+<span id="more"></span>  
+<div id="head"></div>  
+
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><strong>结构组成:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>first<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  hugo</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用vsc时输入!就可以生成头部  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>alt+b即可在浏览器打开(配合插件)  </p>
+<h4 id="标题标签"><a href="#标题标签" class="headerlink" title="标题标签"></a>标题标签</h4><p><code>&lt;h1&gt;</code> <code>&lt;h2&gt;</code> …<code>&lt;h6&gt;</code>  </p>
+<hr>
+<h4 id="段落标签"><a href="#段落标签" class="headerlink" title="段落标签"></a>段落标签</h4><p><code>&lt;p&gt;</code>(block) </p>
+<h4 id="换行标签"><a href="#换行标签" class="headerlink" title="换行标签"></a>换行标签</h4><p><code>&lt;br /&gt;</code></p>
+<hr>
+<h4 id="加粗"><a href="#加粗" class="headerlink" title="加粗"></a>加粗</h4><p><code>&lt;strong&gt;</code> </p>
+<h4 id="倾斜"><a href="#倾斜" class="headerlink" title="倾斜"></a>倾斜</h4><p><code>&lt;em&gt;</code> </p>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p><code>&lt;del&gt;</code> </p>
+<h4 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h4><p><code>&lt;ins&gt;</code>  </p>
+<hr>
+<h4 id="分区块元素"><a href="#分区块元素" class="headerlink" title="分区块元素"></a><em><strong>分区块元素</strong></em></h4><p><code>&lt;div&gt;</code> 用得最多的标签</p>
+<hr>
+<p>图片<code>&lt;img src=&quot;&quot; title=&quot;&quot;&gt;</code> src可以用同一级路径,下一级路径,绝对路径和上一级路径(..&#x2F;)</p>
+<hr>
+<h4 id="超链接标签"><a href="#超链接标签" class="headerlink" title="超链接标签"></a>超链接标签</h4><p><code>&lt;a href=&quot;链接 #是空链接&quot; targe=&quot;_self or _blank(在新标签页打开)&quot;&gt;</code> 超链接标签中间可以插入img标签 实现点击图片跳转</p>
+<hr>
+<h4 id="锚点定位"><a href="#锚点定位" class="headerlink" title="锚点定位"></a>锚点定位</h4><p> <code>&lt;a href=&quot;#+id&quot;&gt;</code> 在要定位的标签后定义id&#x3D;”id”即可实现从链接出跳转到该标签.例如:  </p>
+<p><a href="#head" title="锚点定位">点此跳转到基础</a></p>
+<hr>
+<h4 id="注释标签"><a href="#注释标签" class="headerlink" title="注释标签"></a>注释标签</h4><p><code>&lt;!-- --&gt;</code> </p>
+<h4 id="大于符号"><a href="#大于符号" class="headerlink" title="大于符号"></a>大于符号</h4><p><code>$gt</code> </p>
+<h4 id="小于符号"><a href="#小于符号" class="headerlink" title="小于符号"></a>小于符号</h4><p><code>$lt</code></p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p><strong>在<code>&lt;table&gt;</code>标签中写表格 可以定义表格的width height border cellspacing(单元格距离)</strong></p>
+<div style="color: red">!警告 这些功能可能被删除 不再兼容!</div>
+行标签和列标签 行: `<tr>` 列: `<td>` 表头`<th>`(加粗居中)
+
+<p>合并单元格 在<code>&lt;td&gt;</code>里添加rowspan&gt;1 在<code>&lt;tr&gt;</code>添加colspan&gt;1即可</p>
+<hr>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>表头 <code>&lt;ul&gt;</code> 项<code>&lt;li&gt;</code></p>
+<hr>
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>表头 <code>&lt;ol&gt;</code> 项<code>&lt;li&gt;</code></p>
+<hr>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>表单域<code>&lt;form&gt;</code> 在form标签内写表单</p>
+<hr>
+<h4 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h4><hr>
+<h5 id="text文本框"><a href="#text文本框" class="headerlink" title="text文本框"></a>text文本框</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;提交时的name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;初始内容&quot;</span> <span class="attr">maxlength</span>=<span class="string">&quot;最大输入长度&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<form><input type="text" name="提交时的name" value="输入你的心情" maxlength="10"></form>
+---
+
+<h5 id="password密码框"><a href="#password密码框" class="headerlink" title="password密码框"></a>password密码框</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;提交时的name 一般为password&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+<form><input type="password" name="提交时的name 一般为password" ></form>
+
+<hr>
+<h5 id="radio单选框"><a href="#radio单选框" class="headerlink" title="radio单选框"></a>radio单选框</h5><p>格式:例如性别</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;男&quot;</span> <span class="attr">id</span>=<span class="string">&quot;男&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;男&quot;</span>&gt;</span>男<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;女&quot;</span> <span class="attr">id</span>=<span class="string">&quot;女&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;女&quot;</span>&gt;</span>女<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<form>  
+<input type="radio" name="sex" value="男" id="男"><label for="男">男</label>   
+<input type="radio" name="sex" value="女" id="女"><label for="女">女</label>  
+</form>
+label标签实现 点击文字也可以进行选择
+
+<h5 id="checkbox复选框"><a href="#checkbox复选框" class="headerlink" title="checkbox复选框"></a>checkbox复选框</h5><p>格式:   </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lover&quot;</span> <span class="attr">value</span>=<span class="string">&quot;happiness&quot;</span> <span class="attr">id</span>=<span class="string">&quot;开心&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;开心&quot;</span>&gt;</span>开心<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>你的心情怎么样: </p>
+<form><input type="checkbox" name="lover" value="happiness" id="开心">
+    <label for="开心">开心</label>
+    <input type="checkbox" name="lover" value="happiness" id="快乐">
+    <label for="快乐">快乐</label>
+    <input type="checkbox" name="lover" value="happiness" id="幸福">
+    <label for="幸福">幸福</label>
+</form>
+
+<hr>
+<h5 id="button按钮"><a href="#button按钮" class="headerlink" title="button按钮"></a>button按钮</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">name</span>=<span class="string">&quot;返回的name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;按钮显示的内容&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<form><input type="text" name="confimation" value="请输入验证码" maxlength="6"> <input type="button" name="getconfimation" value="获取验证码"></form>
+
+<hr>
+<h5 id="file上传文件"><a href="#file上传文件" class="headerlink" title="file上传文件"></a>file上传文件</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;返回的name&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上传头像:<form><input type="file" name="profilepic"><!--上传头像--></form></p>
+<hr>
+<h5 id="submit提交表单"><a href="#submit提交表单" class="headerlink" title="submit提交表单"></a>submit提交表单</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<form><input type="submit" value="提交"></form>
+
+<hr>
+<h5 id="reset重置"><a href="#reset重置" class="headerlink" title="reset重置"></a>reset重置</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重置&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<form>
+<input type="text" name="提交时的name" value="输入你的心情" maxlength="10"><br />
+<input type="password" name="password" > <br />
+<input type="reset" value="重置">
+</form>
+
+<hr>
+<h5 id="select下拉表单"><a href="#select下拉表单" class="headerlink" title="select下拉表单"></a>select下拉表单</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">option</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<form>
+    <select>
+    <option selected="selected">选择你的地区</option>
+    <option>四川</option>
+    <option>河南</option>
+    <option>河北</option>
+    <option>江苏</option>
+    </select>
+    </form>
+
+<hr>
+<h5 id="textarea文本域"><a href="#textarea文本域" class="headerlink" title="textarea文本域"></a>textarea文本域</h5><p>格式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+ <form>
+ <textarea>
+    </textarea>
+    </form>  
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>luyuxuan
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://luyuxuan-hugo.github.io/2022/05/27/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84/" title="html记忆重构">https://luyuxuan-hugo.github.io/2022/05/27/html记忆重构/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Html5/" rel="tag"># Html5</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/27/start%20with%20md/" rel="prev" title="start with markdown">
+                  <i class="fa fa-chevron-left"></i> start with markdown
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/" rel="next" title="html记忆重构(二)">
+                  html记忆重构(二) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luyuxuan</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">23k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://lib.baomitu.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
