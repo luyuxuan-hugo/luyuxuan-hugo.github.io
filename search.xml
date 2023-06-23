@@ -138,91 +138,6 @@
       </tags>
   </entry>
   <entry>
-    <title>db-01</title>
-    <url>/2022/10/13/db-01/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #f1a08d;text-align: center">"我们彼此停泊"</div> 
-
-<span id="more"></span>
-
-<hr>
-<h1 id="mysql-操作"><a href="#mysql-操作" class="headerlink" title="mysql 操作"></a>mysql 操作</h1><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">net start mysql80  </span><br></pre></td></tr></table></figure>
-
-<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">net start mysql80  </span><br></pre></td></tr></table></figure>
-
-<h3 id="cmd连接mysql"><a href="#cmd连接mysql" class="headerlink" title="cmd连接mysql"></a>cmd连接mysql</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>cmd要管理员打开  </p>
-</blockquote>
-<h1 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句</h1><p><em><strong>Data Definition Language,数据定义语言,用来定义数据库对象(数据库,表,字段).</strong></em>  </p>
-<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create database [if not exists] databasename [default charset] [collate 排序规则];</span><br><span class="line">eg:</span><br><span class="line">create database if not exists Student;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>中括号中是可选操作   </p>
-<blockquote>
-<p>if not exists 如果数据库不存在 则创建   </p>
-<blockquote>
-<p>不能创建两个名字相同的数据库   </p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="查询所有数据库"><a href="#查询所有数据库" class="headerlink" title="查询所有数据库"></a>查询所有数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show databases; </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>显示所有的数据库  </p>
-</blockquote>
-<h3 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use databasename;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>切换使用该数据库,对该数据库进行操作</p>
-</blockquote>
-<h3 id="查询当前所在数据库"><a href="#查询当前所在数据库" class="headerlink" title="查询当前所在数据库"></a>查询当前所在数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select database();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>显示当前正在操作的数据库</p>
-</blockquote>
-<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop database [if exists] databasename;</span><br><span class="line">eg:</span><br><span class="line">drop database if exists Student;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>删除数据库,加上if exists 只有在该数据库存在时才删除.</p>
-</blockquote>
-<hr>
-<h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h4><p><em><strong>tinyint:</strong></em> 取值范围(-128,127),unsigned取值范围(0,255)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">unsigned使用方法:</span><br><span class="line">age tinyint unsigned;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>smallint 2bytes<br>mediumint 3bytes<br>int 4bytes<br>bigint 8bytes<br>float 4bytes 单精度浮点数<br>double 8bytes 双精度浮点数</p>
-</blockquote>
-<hr>
-<h4 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h4><p><em><strong>char:</strong></em> 定长字符串, <em><strong>varchar</strong></em> 变长字符串</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name varchar(50),</span><br><span class="line"></span><br><span class="line">idno char(18) comment &#x27;身份证号&#x27;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>char性能优于varchar</p>
-</blockquote>
-<h4 id="日期时间类型"><a href="#日期时间类型" class="headerlink" title="日期时间类型"></a>日期时间类型</h4><p><em><strong>data</strong></em> 日期 <code>yyyy-mm-dd </code><br><em><strong>time</strong></em> 时间 <code>hh:mm:ss</code><br><em><strong>year</strong></em> 年份 <code>yyyy</code><br><em><strong>datetime</strong></em> 混合日期和时间 <code>yyyy-mm-dd hh:mm:ss</code>  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">entrydate date comment &#x27;入学时间&#x27;,  </span><br><span class="line"></span><br><span class="line">submittime datetime comment &#x27;提交时间&#x27;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table tablename(</span><br><span class="line"></span><br><span class="line">    字段1 字段类型 [comment 字段1注释],</span><br><span class="line"></span><br><span class="line">    字段2 字段类型 [comment 字段2注释]</span><br><span class="line"></span><br><span class="line">) [comment 表注释] </span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">create table Student(</span><br><span class="line"></span><br><span class="line">    id int comment &#x27;编号&#x27;,</span><br><span class="line"></span><br><span class="line">    name varchar(50) comment &#x27;姓名&#x27;</span><br><span class="line"></span><br><span class="line">) comment &#x27;学生表&#x27;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>字段之间需要用逗号连接,comment是可选属性 </p>
-</blockquote>
-<h3 id="查询当前数据库的所有表"><a href="#查询当前数据库的所有表" class="headerlink" title="查询当前数据库的所有表"></a>查询当前数据库的所有表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show tables;</span><br></pre></td></tr></table></figure>
-
-<h3 id="查询指定表"><a href="#查询指定表" class="headerlink" title="查询指定表"></a>查询指定表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">desc tablename;</span><br></pre></td></tr></table></figure>
-
-<h3 id="查询指定表的建表语句"><a href="#查询指定表的建表语句" class="headerlink" title="查询指定表的建表语句"></a>查询指定表的建表语句</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create table tablename;</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><h4 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h4><p><em><strong>ADD</strong></em> </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table tablename add 字段名 类型 [comment 注释]</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line"></span><br><span class="line">alter table Student add dept varchar(20) comment &#x27;专业&#x27;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>database</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>html记忆重构(二)</title>
     <url>/2022/05/28/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84%20(%20%E4%BA%8C%20)/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">说起莎乐美,月亮就会出现</div>
@@ -320,6 +235,148 @@
       </tags>
   </entry>
   <entry>
+    <title>db-01</title>
+    <url>/2022/10/13/db-01/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #f1a08d;text-align: center">"我们彼此停泊"</div> 
+
+<span id="more"></span>
+
+<hr>
+<h1 id="mysql-操作"><a href="#mysql-操作" class="headerlink" title="mysql 操作"></a>mysql 操作</h1><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">net start mysql80  </span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">net start mysql80  </span><br></pre></td></tr></table></figure>
+
+<h3 id="cmd连接mysql"><a href="#cmd连接mysql" class="headerlink" title="cmd连接mysql"></a>cmd连接mysql</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>cmd要管理员打开  </p>
+</blockquote>
+<h1 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句</h1><p><em><strong>Data Definition Language,数据定义语言,用来定义数据库对象(数据库,表,字段).</strong></em>  </p>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create database [if not exists] databasename [default charset] [collate 排序规则];</span><br><span class="line">eg:</span><br><span class="line">create database if not exists Student;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>中括号中是可选操作   </p>
+<blockquote>
+<p>if not exists 如果数据库不存在 则创建   </p>
+<blockquote>
+<p>不能创建两个名字相同的数据库   </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="查询所有数据库"><a href="#查询所有数据库" class="headerlink" title="查询所有数据库"></a>查询所有数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show databases; </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示所有的数据库  </p>
+</blockquote>
+<h3 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use databasename;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>切换使用该数据库,对该数据库进行操作</p>
+</blockquote>
+<h3 id="查询当前所在数据库"><a href="#查询当前所在数据库" class="headerlink" title="查询当前所在数据库"></a>查询当前所在数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select database();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示当前正在操作的数据库</p>
+</blockquote>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop database [if exists] databasename;</span><br><span class="line">eg:</span><br><span class="line">drop database if exists Student;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>删除数据库,加上if exists 只有在该数据库存在时才删除.</p>
+</blockquote>
+<hr>
+<h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h4><p><em><strong>tinyint:</strong></em> 取值范围(-128,127),unsigned取值范围(0,255)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">unsigned使用方法:</span><br><span class="line">age tinyint unsigned;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>smallint 2bytes<br>mediumint 3bytes<br>int 4bytes<br>bigint 8bytes<br>float 4bytes 单精度浮点数<br>double 8bytes 双精度浮点数</p>
+</blockquote>
+<hr>
+<h4 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h4><p><em><strong>char:</strong></em> 定长字符串, <em><strong>varchar</strong></em> 变长字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name varchar(50),</span><br><span class="line"></span><br><span class="line">idno char(18) comment &#x27;身份证号&#x27;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>char性能优于varchar</p>
+</blockquote>
+<h4 id="日期时间类型"><a href="#日期时间类型" class="headerlink" title="日期时间类型"></a>日期时间类型</h4><p><em><strong>data</strong></em> 日期 <code>yyyy-mm-dd </code><br><em><strong>time</strong></em> 时间 <code>hh:mm:ss</code><br><em><strong>year</strong></em> 年份 <code>yyyy</code><br><em><strong>datetime</strong></em> 混合日期和时间 <code>yyyy-mm-dd hh:mm:ss</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">entrydate date comment &#x27;入学时间&#x27;,  </span><br><span class="line"></span><br><span class="line">submittime datetime comment &#x27;提交时间&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table tablename(</span><br><span class="line"></span><br><span class="line">    字段1 字段类型 [comment 字段1注释],</span><br><span class="line"></span><br><span class="line">    字段2 字段类型 [comment 字段2注释]</span><br><span class="line"></span><br><span class="line">) [comment 表注释] </span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">create table Student(</span><br><span class="line"></span><br><span class="line">    id int comment &#x27;编号&#x27;,</span><br><span class="line"></span><br><span class="line">    name varchar(50) comment &#x27;姓名&#x27;</span><br><span class="line"></span><br><span class="line">) comment &#x27;学生表&#x27;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>字段之间需要用逗号连接,comment是可选属性 </p>
+</blockquote>
+<h3 id="查询当前数据库的所有表"><a href="#查询当前数据库的所有表" class="headerlink" title="查询当前数据库的所有表"></a>查询当前数据库的所有表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询指定表"><a href="#查询指定表" class="headerlink" title="查询指定表"></a>查询指定表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">desc tablename;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询指定表的建表语句"><a href="#查询指定表的建表语句" class="headerlink" title="查询指定表的建表语句"></a>查询指定表的建表语句</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create table tablename;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><h4 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h4><p><em><strong>ADD</strong></em> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table tablename add 字段名 类型 [comment 注释]</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line"></span><br><span class="line">alter table Student add dept varchar(20) comment &#x27;专业&#x27;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html记忆重构5</title>
+    <url>/2022/07/11/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%BA%94)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center"></div>
+
+<hr>
+<span id="more"></span>  
+
+<hr>
+<h3 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h3><hr>
+<h5 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h5><p>设置相同的样式,一个样式就会覆盖另一个冲突的样式,遵守就近原则,不冲突的不覆盖  </p>
+<h5 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h5><p>子标签会继承父标签的的某些样式,如 text-, font-, line-, 以及color属性   </p>
+<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>当同一个元素指定多个选择器,根据选择器的权重来执行   </p>
+<p>继承或 * : <code>0,0,0,0</code> ;<br>元素选择器 : <code>0,0,0,1</code> ;<br>类选择器&#x2F;伪类选择器 : <code>0,0,1,0</code> ;<br>ID选择器 : <code>0,1,0,0</code> ;<br>行内样式style&#x3D;”” : <code>1,0,0,0</code> ;<br>!important : 无限大 ;</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>:blue<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>复合选择器有权重叠加的问题 </p>
+</blockquote>
+<hr>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><h5 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h5><p>边框的粗细 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h5><p>边框样式,默认为none;</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-style</span>: dotted/solid/dashed  点线/实线/虚线  </span><br></pre></td></tr></table></figure>
+
+<h5 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h5><p>边框颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-color</span>: <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
+
+<h5 id="复合写法"><a href="#复合写法" class="headerlink" title="复合写法"></a>复合写法</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">20px</span> solid <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>没有先后顺序  </p>
+</blockquote>
+<p><em><strong>可以只设定边框的一条边</strong></em>  </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#fff</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h5><p>边框合并</p>
+<hr>
+<blockquote>
+<p>边框会影响原本盒子的大小 </p>
+</blockquote>
+<h4 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h4><p>内边距,即内容与边框之间的距离</p>
+<p>可以单独写每个方向的内边距 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: </span><br><span class="line">padding-left:  </span><br><span class="line">padding-right: </span><br><span class="line">padding-bottom: </span><br></pre></td></tr></table></figure>
+
+<p>也可以复合写,可以有四种写法 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span>; 上下左右边距都是<span class="number">5px</span>  </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>; 上下边距是<span class="number">5px</span>,左右边距是<span class="number">10px</span></span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span>; 上边距是<span class="number">5px</span>,下边距是<span class="number">20px</span>,左右边距是<span class="number">10px</span> </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span> <span class="number">40px</span>;上右下左分别为<span class="number">5</span>/<span class="number">10</span>/<span class="number">20</span>/<span class="number">40px</span>  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>padding也会影响盒子的大小<br>如果本身没有指定width和height值,padding不会撑开盒子</p>
+</blockquote>
+<h4 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h4>]]></content>
+      <tags>
+        <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>html记忆重构(三)</title>
     <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">我们不再一起漫游,踏着灿烂的月光</div>
@@ -365,6 +422,115 @@
 ]]></content>
       <tags>
         <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html记忆重构(四)</title>
+    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
+
+<span id="more"></span>
+
+<hr>
+<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><p>可以精确地选择到标签中的标签.例如有多个li,我只想修改无序表中的li的样式,只需要在类选择器li的前面加上ul,例如输入</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: pink;</span><br><span class="line">        <span class="attribute">font-size</span>: xx-large;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>就可以将无序表中的字体颜色和字体大小修改成想要的样式</p>
+<blockquote>
+<p>如果只想修改li中的某一类标签,可以继续选择,只需要在后面加上标签名即可</p>
+</blockquote>
+<hr>
+<p>如果有多个ul,而我们只想修改某一个ul中的li,只需要给该ul添加一个类,同时将ul改成.classname即可</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: none;</span><br><span class="line">        <span class="attribute">color</span>: orange;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>格式如下:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span>&gt;<span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">25px</span></span><br><span class="line">    line-height:<span class="number">25px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在父类的后面加上<code>&gt;</code>,则选择最近一级的子元素,亲儿子元素</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>亲儿子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>孙子<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h3><p>要给多个类选择器添加同样的属性,只需要用<code>,</code>即可,如下</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="链接伪类选择器"><a href="#链接伪类选择器" class="headerlink" title="链接伪类选择器"></a>链接伪类选择器</h3><p>以链接为例,可以修改其各个状态的属性</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">     <span class="attribute">text-decoration</span>: none;//去掉下划线</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/* 未访问过的链接  a:link*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 访问过的链接  a:visited*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#576690</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标经过的链接 a:hover */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标按下还未弹起的链接 a:active */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aqua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里只修改了链接的各种状态下的颜色.</p>
+<hr>
+<h3 id="focus语法"><a href="#focus语法" class="headerlink" title="focus语法"></a>focus语法</h3><p>为input标签添加focus属性,在聚焦该input标签时的属性]</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">       <span class="attribute">color</span>: pink;</span><br><span class="line">       <span class="attribute">background-color</span>: <span class="number">#576690</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>未聚焦时,文本框为白色背景,聚焦后,背景颜色变为#576690,字体颜色变为pink</p>
+</blockquote>
+<hr>
+<h3 id="块级元素-x2F-行内元素-x2F-行内块元素"><a href="#块级元素-x2F-行内元素-x2F-行内块元素" class="headerlink" title="块级元素&#x2F;行内元素&#x2F;行内块元素"></a>块级元素&#x2F;行内元素&#x2F;行内块元素</h3><p>块元素典型的是div,可以转换为其他两种形式.</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">display</span>: block;转换为块元素</span><br><span class="line"><span class="attribute">display</span>: inline;转换为行内元素</span><br><span class="line"><span class="attribute">display</span>: inline-block;转换为行内块元素</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>tips: 将行高设置为块的高度即可实现单行文字垂直居中</p>
+</blockquote>
+<hr>
+<h3 id="背景相关"><a href="#背景相关" class="headerlink" title="背景相关"></a>背景相关</h3><h4 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="number">#576690</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>默认为transparent  </p>
+</blockquote>
+<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">绝对路径/相对路径/网址</span>)    </span><br></pre></td></tr></table></figure>
+
+<h5 id="背景平铺"><a href="#背景平铺" class="headerlink" title="背景平铺"></a>背景平铺</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span>: repeat; //默认横纵都平铺  </span><br><span class="line"><span class="attribute">background-repeat</span>: no-repeat; //不平铺   <span class="attribute">background-repeat</span>: repeat-x; //沿横向平铺 <span class="attribute">background-repeat</span>: repeat-y;  //沿纵向平铺  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>背景图片可以盖住背景颜色  </p>
+</blockquote>
+<h5 id="背景图片的位置"><a href="#背景图片的位置" class="headerlink" title="背景图片的位置"></a>背景图片的位置</h5><blockquote>
+<p>比直接插入图片更好控制图片的位置  </p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-position</span>: x y;</span><br><span class="line">//可以是方位名词也可以是精确单位   </span><br><span class="line">//方位名词: center top bottom left right  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方位词不用分先后<br>如果方位词只有一个 另一个默认居中对齐<br>    &#x2F;&#x2F;精确单位: 百分数 或者由数字和单位组成的长度值<br>严格遵守x在前,y在后,如果只指定了一个值,就是x的值,y默认居中对齐  </p>
+</blockquote>
+<h5 id="背景附着-x2F-背景图像固定"><a href="#背景附着-x2F-背景图像固定" class="headerlink" title="背景附着&#x2F;背景图像固定"></a>背景附着&#x2F;背景图像固定</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span>:scroll //随内容滚动而滚动  </span><br><span class="line">background-attachment:fixed //背景图像固定  </span><br></pre></td></tr></table></figure>
+
+<h4 id="背景属性的复合写法"><a href="#背景属性的复合写法" class="headerlink" title="背景属性的复合写法"></a>背景属性的复合写法</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background</span>: 颜色 图片地址 平铺 图像滚动 图片位置 </span><br><span class="line">//没有先后顺序  </span><br></pre></td></tr></table></figure>
+
+<h4 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)  </span><br><span class="line">//在rgb的基础上加上了<span class="built_in">alpha</span>(透明度)这个参数 <span class="number">0</span>~<span class="number">1</span> <span class="number">0</span>表示完全透明 <span class="number">1</span>表示完全不透明  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>0.5可以写成.5</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给L小姐的情书</title>
+    <url>/2023/02/18/letter/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">你是落入我梦中的月亮</br>
+你是我手心绽放的玫瑰</div>
+
+<hr>
+<span id="more"></span>  
+<p>  煜儿，我在梦里闻到了你的发香，我梦到了我们在斯卡布罗的驻足，芜荽、鼠尾草、迷迭香、木棉还有玫瑰，风铃在闹市摆动，梦里的人说着我听不懂的语言，我紧紧地牵着你的手。</p>
+<p>煜儿，我在说，<em><strong>我很想你。</strong></em>  </p>
+<p>最近在洛尔迦的诗集，书里说</p>
+<blockquote>
+<p>我要把嘴留在你腿间，<br>把灵魂留给照片、晚香玉<br>还有你徘徊的暗涌，<br>我的爱，我的爱，我想要留下<br>提琴与坟墓，华尔兹的绸带。  </p>
+</blockquote>
+<p>煜儿，我纷纷的情欲就像提琴收弦时连绵的尾音，每次读到洛尔迦的诗都会想到我们的每一个吻，想到与你共度的每一个夜晚的月相，你是我近乎所有美好记忆的支点，我始终相信爱情是让人发狂的东西，我深深地为你着迷。我爱你，这是我唯一确认的事。  </p>
+<p>煜儿，我总写一些晦涩的诗来表达爱意，希望你能咀嚼那些隐喻和朦胧的爱，但我也愿意直接向你表达我难捱的思念和汹涌的爱意。我讨厌别离，但别离也意味着我又一次踏上了和你重逢的路，我很想你。  </p>
+<p>煜儿，我相信人是有来生的，我从来都不是一个坚定的唯物主义者，我是你的信徒，我就在你神殿里虔诚的祈祷，等待着你的降临。我是一个彻头彻尾的李佳煜主义者。我喜欢桔梗的花语，是”永恒的爱”。  </p>
+<p>煜儿，你就像记忆里周末的清晨，像树林里逃逸的第一缕光线，像夕阳下温暖的归途，你是我所有幻梦的具象，我一切明亮起点。  </p>
+<p>煜儿，我快要写不出情话了，只能笨拙的说出我爱你和我很想你。  </p>
+<p>煜儿，不管怎么说，我很爱你​。   </p>
+<p>也很想你。<br><code>2023.2.18</code> </p>
+<p>​    </p>
+]]></content>
+      <tags>
+        <tag>with_yu</tag>
       </tags>
   </entry>
   <entry>
@@ -504,112 +670,191 @@ label标签实现 点击文字也可以进行选择
       </tags>
   </entry>
   <entry>
-    <title>给L小姐的情书</title>
-    <url>/2023/02/18/letter/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">你是落入我梦中的月亮</br>
-你是我手心绽放的玫瑰</div>
+    <title>quick_sort/merge_sort/二分</title>
+    <url>/2022/06/26/quick-sort/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">再回头,你不许</br>
+如曾经不登对</div>  
+
+<span id="more"></span>  
 
 <hr>
-<span id="more"></span>  
-<p>  煜儿，我在梦里闻到了你的发香，我梦到了我们在斯卡布罗的驻足，芜荽、鼠尾草、迷迭香、木棉还有玫瑰，风铃在闹市摆动，梦里的人说着我听不懂的语言，我紧紧地牵着你的手。</p>
-<p>煜儿，我在说，<em><strong>我很想你。</strong></em>  </p>
-<p>最近在洛尔迦的诗集，书里说</p>
-<blockquote>
-<p>我要把嘴留在你腿间，<br>把灵魂留给照片、晚香玉<br>还有你徘徊的暗涌，<br>我的爱，我的爱，我想要留下<br>提琴与坟墓，华尔兹的绸带。  </p>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><blockquote>
+<p>先选定一个x,将所有比x小的数放在左半部分,将所有比x大的数放在右半部分<br>再递归处理即可  </p>
 </blockquote>
-<p>煜儿，我纷纷的情欲就像提琴收弦时连绵的尾音，每次读到洛尔迦的诗都会想到我们的每一个吻，想到与你共度的每一个夜晚的月相，你是我近乎所有美好记忆的支点，我始终相信爱情是让人发狂的东西，我深深地为你着迷。我爱你，这是我唯一确认的事。  </p>
-<p>煜儿，我总写一些晦涩的诗来表达爱意，希望你能咀嚼那些隐喻和朦胧的爱，但我也愿意直接向你表达我难捱的思念和汹涌的爱意。我讨厌别离，但别离也意味着我又一次踏上了和你重逢的路，我很想你。  </p>
-<p>煜儿，我相信人是有来生的，我从来都不是一个坚定的唯物主义者，我是你的信徒，我就在你神殿里虔诚的祈祷，等待着你的降临。我是一个彻头彻尾的李佳煜主义者。我喜欢桔梗的花语，是”永恒的爱”。  </p>
-<p>煜儿，你就像记忆里周末的清晨，像树林里逃逸的第一缕光线，像夕阳下温暖的归途，你是我所有幻梦的具象，我一切明亮起点。  </p>
-<p>煜儿，我快要写不出情话了，只能笨拙的说出我爱你和我很想你。  </p>
-<p>煜儿，不管怎么说，我很爱你​。   </p>
-<p>也很想你。<br><code>2023.2.18</code> </p>
-<p>​    </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;<span class="comment">//数据范围1~1000000</span></span><br><span class="line"><span class="type">int</span> n;<span class="comment">//数字个数</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="comment">//l是左边界,r是右边界</span></span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;<span class="comment">//如果范围内数组只有一个数或没有数,直接返回</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> x=q[(l+r)/<span class="number">2</span>];<span class="comment">//分界值x取数组中间值</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[++i]&lt;x);<span class="comment">//左指针右移 直到当前值大于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[--j]&gt;x);<span class="comment">//右指针左移 直到当前值小于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i&lt;j) <span class="built_in">swap</span>(q[i],q[j]); <span class="comment">//交换ij处的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">quick_sort</span>(q,l,j);<span class="comment">//递归处理左半部分</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,j+<span class="number">1</span>,r);<span class="comment">//递归处理右半部分</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d, q[i]);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果分界值选择起点值q[l],数据过强会报错,故选择中间值q[(l+r)&#x2F;2]</p>
+</blockquote>
+<hr>
+<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><blockquote>
+<p>将数组递归成只含一个数字的可排序的区间,最后在两个区间的数据从小到大放进tmp数组,再放进数组里</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> q[N],tmp[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;<span class="comment">//取分界点</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q, l, mid),<span class="built_in">merge_sort</span>(q, mid + <span class="number">1</span>, r);<span class="comment">//递归到最小的区间,从最底层的两个数据排好序,再回到四个数据排好序,始终是两组数据之间的归并,  </span></span><br><span class="line">                                                    <span class="comment">//归并的规模从小到大,2-&gt;4-&gt;8...  </span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = l,j=mid + <span class="number">1</span>,k = <span class="number">0</span>; <span class="comment">//i是左起点,j是右起点  </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(q[i] &lt;= q[j]) tmp[k++] = q[i++]; <span class="comment">//两组数据在各自的内部都已经排好序,从小到大比较两组数据之间的大小就可以将整个数组排序  </span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> tmp[k++] = q[j++];</span><br><span class="line">    &#125;<span class="comment">//归并的过程,从小到大放入</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid) tmp[k++] = q[i++];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j &lt;= r) tmp[k++] = q[j++];<span class="comment">//处理剩下的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = l,k = <span class="number">0</span>; i &lt;= r; i++, k++) q[i] = tmp[k];<span class="comment">//将临时数组中的数据取回  </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;<span class="comment">//n个数字</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);<span class="comment">//读入</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q , <span class="number">0</span> , n<span class="number">-1</span>);<span class="comment">//排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n; i++) cout &lt;&lt; q[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><blockquote>
+<p>在排好序的一组数据中,从中间的数据开始,如果中间的值比目标值小,则目标值在选取值的右边,反之则在左边  直到找到目标值  </p>
+</blockquote>
+<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>给定一个按照升序排列的长度为 n 的整数数组，以及 q 个查询。</p>
+<p>对于每个查询，返回一个元素 k 的起始位置和终止位置（位置从 0 开始计数）。</p>
+<p>如果数组中不存在该元素，则返回 -1 -1。</p>
+<hr>
+<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
+<p>第二行包含 n 个整数（均在 1∼10000 范围内），表示完整数组。</p>
+<p>接下来 q 行，每行包含一个整数 k，表示一个询问元素。</p>
+<hr>
+<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>共 q 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
+<p>如果数组中不存在该元素，则返回 -1 -1。</p>
+<h5 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h5><p>1≤n≤100000<br>1≤q≤10000<br>1≤k≤10000  </p>
+<hr>
+<h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><p>6 3<br>1 2 2 3 3 4<br>3<br>4<br>5  </p>
+<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><p>3 4<br>5 5<br>-1 -1  </p>
+<hr>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, m;<span class="comment">//n个数字,询问个数m</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;q[i]);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    <span class="type">int</span> x;<span class="comment">//询问的数字x</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>,r = n - <span class="number">1</span>; <span class="comment">//左右端点</span></span><br><span class="line"><span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(q[l]!=x) <span class="built_in">printf</span>(<span class="string">&quot;-1 -1\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,l);</span><br><span class="line">        l = <span class="number">0</span>,r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r) + <span class="number">1</span> &gt;&gt; <span class="number">1</span> ; <span class="comment">// 避免因为l + r 是奇数(即这组数据为偶数个)而引起的边界问题 </span></span><br><span class="line">                                        <span class="comment">//如果数据个数为偶数 每次取得的分界点应该不同 因此+1之后再/2(也可以&gt;&gt;1之后+0.5)</span></span><br><span class="line">            <span class="keyword">if</span>(q[mid] &lt;= x) l = mid;</span><br><span class="line">            <span class="keyword">else</span> r = mid <span class="number">-1</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, l);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这道题是找目标数字的左右范围,即找到左起点和右终点  </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">while</span>(l&lt;r)&#123;    </span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> l = mid + <span class="number">1</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码是找到大于等于x的第一个数 即左端点    </p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>with_yu</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
-    <title>html记忆重构(四)</title>
-    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
-
+    <title>start with markdown</title>
+    <url>/2022/05/27/start%20with%20md/</url>
+    <content><![CDATA[<blockquote>
+<p>喂<br>长夜,长夜的重负何时是尽头?<br>何时我能得我所求?<br>抵达终极,<br>享受安逸?<br>小路对我说:”<br>从这里,我开始.”</p>
+<blockquote>
+<p> ————阿多尼斯</p>
+</blockquote>
+</blockquote>
 <span id="more"></span>
 
-<hr>
-<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><p>可以精确地选择到标签中的标签.例如有多个li,我只想修改无序表中的li的样式,只需要在类选择器li的前面加上ul,例如输入</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: pink;</span><br><span class="line">        <span class="attribute">font-size</span>: xx-large;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>就可以将无序表中的字体颜色和字体大小修改成想要的样式</p>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>在文字前加入1-6个#即为标题,#越少标题越大,对应h1-h6.<br>还可以用&#x3D;&#x3D;&#x3D;&#x3D;识别 一级标题,—识别二级标题</p>
+<p>tips:#与文字之间要加入空格  </p>
+<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p> <em><strong>摘录一段:</strong></em> </p>
 <blockquote>
-<p>如果只想修改li中的某一类标签,可以继续选择,只需要在后面加上标签名即可</p>
+<p>我亲爱的，我想起了过往那些百无聊赖的夜晚，我有时是在读陀思妥耶夫斯基，有时是在听威尔第的歌剧，如果手头不那么紧，或许还伴着蒂普提克的香氛。我总是希望假借伟大作品的精神力量来反抗平庸和穷苦，但最后不免患上恋词癖——反倒是更加显出我想要隐藏的卑劣的内里。但是您却不一样，自有您陪伴的夜晚伊始，我才真正捕捉到了生命的活性与真实，一个肮脏的灵魂才找到了归处。 </p>
 </blockquote>
-<hr>
-<p>如果有多个ul,而我们只想修改某一个ul中的li,只需要给该ul添加一个类,同时将ul改成.classname即可</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: none;</span><br><span class="line">        <span class="attribute">color</span>: orange;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>格式如下:</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span>&gt;<span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">25px</span></span><br><span class="line">    line-height:<span class="number">25px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在父类的后面加上<code>&gt;</code>,则选择最近一级的子元素,亲儿子元素</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>亲儿子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>孙子<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h3><p>要给多个类选择器添加同样的属性,只需要用<code>,</code>即可,如下</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="链接伪类选择器"><a href="#链接伪类选择器" class="headerlink" title="链接伪类选择器"></a>链接伪类选择器</h3><p>以链接为例,可以修改其各个状态的属性</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">     <span class="attribute">text-decoration</span>: none;//去掉下划线</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/* 未访问过的链接  a:link*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 访问过的链接  a:visited*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#576690</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标经过的链接 a:hover */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标按下还未弹起的链接 a:active */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aqua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里只修改了链接的各种状态下的颜色.</p>
-<hr>
-<h3 id="focus语法"><a href="#focus语法" class="headerlink" title="focus语法"></a>focus语法</h3><p>为input标签添加focus属性,在聚焦该input标签时的属性]</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">       <span class="attribute">color</span>: pink;</span><br><span class="line">       <span class="attribute">background-color</span>: <span class="number">#576690</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p> <em><strong>在两段文字之间加入一行空白就可以实现分段.如下:</strong></em>  </p>
 <blockquote>
-<p>未聚焦时,文本框为白色背景,聚焦后,背景颜色变为#576690,字体颜色变为pink</p>
+<p>我亲爱的，我想起了过往那些百无聊赖的夜晚，我有时是在读陀思妥耶夫斯基，有时是在听威尔第的歌剧，如果手头不那么紧，或许还伴着蒂普提克的香氛。  </p>
+<p>我总是希望假借伟大作品的精神力量来反抗平庸和穷苦，但最后不免患上恋词癖——反倒是更加显出我想要隐藏的卑劣的内里。但是您却不一样，自有您陪伴的夜晚伊始，我才真正捕捉到了生命的活性与真实，一个肮脏的灵魂才找到了归处。  </p>
 </blockquote>
+<!-- more -->
+<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>在行末加上两个以上的空格按下回车即可生成&lt;hr &#x2F;br&gt;  </p>
+<blockquote>
+<p><em><strong>我向星辰下令，我停泊瞩望,</strong></em><br><em><strong>我让自己登基，</strong></em><br><em><strong>做风的君王。</strong></em>  </p>
+</blockquote>
+<p>以上是没有加空格仅按回车的结果<br>好像并没有什么不同&gt;_-,但是为了兼容性,养成良好的习惯  </p>
+<h2 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h2><p>用**标记 类似h5中的标签,<br><em>一个</em> * &#x3D;italic<br><strong>两个</strong> * &#x3D; strong<br><em><strong>三个</strong></em> * &#x3D;italic+strong  </p>
+<p><em>os:支持自己用h5和css的格式自定义</em>,如下:  </p>
+<div style="font-size: 25px; color: #576690">大小为25像素,颜色为#576690</div>
+
+<h2 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h2><p>用&gt;标记.</p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+</blockquote>
+<blockquote>
+<p>我始终为你而紧张，为你而颤抖；可是你对此毫无感觉，就像你口袋里装了怀表，你对它紧绷的发条没有感觉一样；<br>这根发条在暗中耐心地为你数着你的钟点，计算着你的时间，以它听不见的心跳陪着你东奔西走。<br>而你在它那嘀嗒不停的几百万秒当中，只有一次向它匆匆瞥了一眼。</p>
+<p>——《一个陌生女人的来信》 ​​​茨威格  </p>
+</blockquote>
+<p>引用一段内的文字只需要在最开始的文字前加上&gt; 如果要引用多段,在空白行加上&gt;即可</p>
+<h3 id="嵌套引用"><a href="#嵌套引用" class="headerlink" title="嵌套引用"></a>嵌套引用</h3><p>在开头加上&gt;&gt;即可将本行内容嵌套到上一个引用的内容中,如下:  </p>
+<blockquote>
+<p>我们多么草率地成为了孤儿。玛琳娜，<br>这是我最后一次呼唤你的名字。<br>大雪落在<br>我锈迹斑斑的气管和肺叶上，<br>说吧：今夜，我的嗓音是一列被截停的火车，<br>你的名字是俄罗斯漫长的国境线。</p>
+<p>我想象我们的相遇，在一场隆重的死亡背面</p>
+<blockquote>
+<p>（玫瑰的矛盾贯穿了他硕大的心）；  </p>
+<blockquote>
+<p>在一九二七年春夜，我们在国境线上相遇<br>因此错过了<br>这个呼啸着奔向终点的世界。<br>而今夜，你是舞曲，世界是错误。  </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>在引用的内容中可以无限嵌套,跟&gt;的数量有关</p>
+<h3 id="带有其他元素的引用"><a href="#带有其他元素的引用" class="headerlink" title="带有其他元素的引用"></a>带有其他元素的引用</h3><p><em><strong>在引用中加入-或者+</strong></em></p>
+<blockquote>
+<ul>
+<li>你的笑， </li>
+<li>是大海拥抱海岛的笑，</li>
+<li>是星星跳跃浪花的笑，</li>
+<li>是椰树遮掩椰果的笑。</li>
+<li>你笑着，使黑夜奔逃。</li>
+</ul>
+</blockquote>
+<h2 id="列表语法"><a href="#列表语法" class="headerlink" title="列表语法"></a>列表语法</h2><h3 id="有序表"><a href="#有序表" class="headerlink" title="有序表"></a>有序表</h3><p>用1+”.”+” “开始,之后再使用这种格式,无论数字是多少,都会按照顺序,类似h5中的ol表,如下:  </p>
+<ol>
+<li>从1开始</li>
+<li>这个是5</li>
+<li>这个是2</li>
+</ol>
+<h3 id="无序表"><a href="#无序表" class="headerlink" title="无序表"></a>无序表</h3><p>在每个列表项前面添加破折号 (-)、星号 (*) 或加号 (+) 。缩进一个或多个列表项可创建嵌套列表。</p>
+<ul>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item<ul>
+<li>Indented item</li>
+<li>Indented item</li>
+</ul>
+</li>
+<li>Fourth item</li>
+</ul>
+<p>要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符，如下例所示：</p>
+<ul>
+<li><p>This is the first list item.</p>
+</li>
+<li><p>Here’s the second list item.</p>
+<p>I need to add another paragraph below the second list item.</p>
+</li>
+<li><p>And here’s the third list item.  </p>
+<hr></hr></li>
+<li><p>This is the first list item.</p>
+</li>
+<li><p>Here’s the second list item.</p>
+<blockquote>
+<p>A blockquote would look great below the second list item.</p>
+</blockquote>
+</li>
+<li><p>And here’s the third list item.</p>
+<hr></hr>
+代码块通常采用四个空格或一个制表符缩进。当它们被放在列表中时，请将它们缩进八个空格或两个制表符。</li>
+</ul>
+<ol>
+<li><p>Open the file.</p>
+</li>
+<li><p>Find the following code block on line 21:</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test&lt;/title&gt;
+  &lt;/head&gt;
+</code></pre>
+</li>
+<li><p>Update the title to match the name of your website.</p>
+<hr></hr>
+ 还可以在有序表中插入无序表</li>
+</ol>
+<h2 id="代码语法"><a href="#代码语法" class="headerlink" title="代码语法"></a>代码语法</h2><h3 id="将单词或语句用反引号标记即可-如下"><a href="#将单词或语句用反引号标记即可-如下" class="headerlink" title="将单词或语句用反引号标记即可,如下:"></a>将单词或语句用反引号标记即可,如下:</h3><p> <code>hugo</code>  </p>
+<h3 id="创建代码块-将代码块的每一行缩进4个字符即可"><a href="#创建代码块-将代码块的每一行缩进4个字符即可" class="headerlink" title="创建代码块,将代码块的每一行缩进4个字符即可"></a>创建代码块,将代码块的每一行缩进4个字符即可</h3><pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+    int main()&#123;
+        cout&lt;&lt;&quot;hello world&quot;;
+    return 0; 
+&#125;  
+</code></pre>
 <hr>
-<h3 id="块级元素-x2F-行内元素-x2F-行内块元素"><a href="#块级元素-x2F-行内元素-x2F-行内块元素" class="headerlink" title="块级元素&#x2F;行内元素&#x2F;行内块元素"></a>块级元素&#x2F;行内元素&#x2F;行内块元素</h3><p>块元素典型的是div,可以转换为其他两种形式.</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">display</span>: block;转换为块元素</span><br><span class="line"><span class="attribute">display</span>: inline;转换为行内元素</span><br><span class="line"><span class="attribute">display</span>: inline-block;转换为行内块元素</span><br></pre></td></tr></table></figure>
-
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>在单独一行上使用三个或多个星号 (***)、破折号 (—) 或下划线 (___) ，并且不能包含其他内容。  </p>
 <hr>
-<blockquote>
-<p>tips: 将行高设置为块的高度即可实现单行文字垂直居中</p>
-</blockquote>
 <hr>
-<h3 id="背景相关"><a href="#背景相关" class="headerlink" title="背景相关"></a>背景相关</h3><h4 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="number">#576690</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>默认为transparent  </p>
-</blockquote>
-<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">绝对路径/相对路径/网址</span>)    </span><br></pre></td></tr></table></figure>
-
-<h5 id="背景平铺"><a href="#背景平铺" class="headerlink" title="背景平铺"></a>背景平铺</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span>: repeat; //默认横纵都平铺  </span><br><span class="line"><span class="attribute">background-repeat</span>: no-repeat; //不平铺   <span class="attribute">background-repeat</span>: repeat-x; //沿横向平铺 <span class="attribute">background-repeat</span>: repeat-y;  //沿纵向平铺  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>背景图片可以盖住背景颜色  </p>
-</blockquote>
-<h5 id="背景图片的位置"><a href="#背景图片的位置" class="headerlink" title="背景图片的位置"></a>背景图片的位置</h5><blockquote>
-<p>比直接插入图片更好控制图片的位置  </p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-position</span>: x y;</span><br><span class="line">//可以是方位名词也可以是精确单位   </span><br><span class="line">//方位名词: center top bottom left right  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>方位词不用分先后<br>如果方位词只有一个 另一个默认居中对齐<br>    &#x2F;&#x2F;精确单位: 百分数 或者由数字和单位组成的长度值<br>严格遵守x在前,y在后,如果只指定了一个值,就是x的值,y默认居中对齐  </p>
-</blockquote>
-<h5 id="背景附着-x2F-背景图像固定"><a href="#背景附着-x2F-背景图像固定" class="headerlink" title="背景附着&#x2F;背景图像固定"></a>背景附着&#x2F;背景图像固定</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span>:scroll //随内容滚动而滚动  </span><br><span class="line">background-attachment:fixed //背景图像固定  </span><br></pre></td></tr></table></figure>
-
-<h4 id="背景属性的复合写法"><a href="#背景属性的复合写法" class="headerlink" title="背景属性的复合写法"></a>背景属性的复合写法</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background</span>: 颜色 图片地址 平铺 图像滚动 图片位置 </span><br><span class="line">//没有先后顺序  </span><br></pre></td></tr></table></figure>
-
-<h4 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)  </span><br><span class="line">//在rgb的基础上加上了<span class="built_in">alpha</span>(透明度)这个参数 <span class="number">0</span>~<span class="number">1</span> <span class="number">0</span>表示完全透明 <span class="number">1</span>表示完全不透明  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>0.5可以写成.5</p>
-</blockquote>
+<hr>
+<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#108;&#x75;&#120;&#x69;&#x61;&#111;&#103;&#x75;&#111;&#x6e;&#55;&#x30;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#108;&#x75;&#120;&#x69;&#x61;&#111;&#103;&#x75;&#111;&#x6e;&#55;&#x30;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>   </p>
 ]]></content>
       <tags>
-        <tag>Html5</tag>
+        <tag>MarkDown</tag>
       </tags>
   </entry>
   <entry>
@@ -788,118 +1033,6 @@ label标签实现 点击文字也可以进行选择
       </tags>
   </entry>
   <entry>
-    <title>html记忆重构5</title>
-    <url>/2022/07/11/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%BA%94)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center"></div>
-
-<hr>
-<span id="more"></span>  
-
-<hr>
-<h3 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h3><hr>
-<h5 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h5><p>设置相同的样式,一个样式就会覆盖另一个冲突的样式,遵守就近原则,不冲突的不覆盖  </p>
-<h5 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h5><p>子标签会继承父标签的的某些样式,如 text-, font-, line-, 以及color属性   </p>
-<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>当同一个元素指定多个选择器,根据选择器的权重来执行   </p>
-<p>继承或 * : <code>0,0,0,0</code> ;<br>元素选择器 : <code>0,0,0,1</code> ;<br>类选择器&#x2F;伪类选择器 : <code>0,0,1,0</code> ;<br>ID选择器 : <code>0,1,0,0</code> ;<br>行内样式style&#x3D;”” : <code>1,0,0,0</code> ;<br>!important : 无限大 ;</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>:blue<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>复合选择器有权重叠加的问题 </p>
-</blockquote>
-<hr>
-<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><h5 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h5><p>边框的粗细 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h5><p>边框样式,默认为none;</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-style</span>: dotted/solid/dashed  点线/实线/虚线  </span><br></pre></td></tr></table></figure>
-
-<h5 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h5><p>边框颜色</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-color</span>: <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
-
-<h5 id="复合写法"><a href="#复合写法" class="headerlink" title="复合写法"></a>复合写法</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">20px</span> solid <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>没有先后顺序  </p>
-</blockquote>
-<p><em><strong>可以只设定边框的一条边</strong></em>  </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#fff</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h5><p>边框合并</p>
-<hr>
-<blockquote>
-<p>边框会影响原本盒子的大小 </p>
-</blockquote>
-<h4 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h4><p>内边距,即内容与边框之间的距离</p>
-<p>可以单独写每个方向的内边距 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: </span><br><span class="line">padding-left:  </span><br><span class="line">padding-right: </span><br><span class="line">padding-bottom: </span><br></pre></td></tr></table></figure>
-
-<p>也可以复合写,可以有四种写法 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span>; 上下左右边距都是<span class="number">5px</span>  </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>; 上下边距是<span class="number">5px</span>,左右边距是<span class="number">10px</span></span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span>; 上边距是<span class="number">5px</span>,下边距是<span class="number">20px</span>,左右边距是<span class="number">10px</span> </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span> <span class="number">40px</span>;上右下左分别为<span class="number">5</span>/<span class="number">10</span>/<span class="number">20</span>/<span class="number">40px</span>  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>padding也会影响盒子的大小<br>如果本身没有指定width和height值,padding不会撑开盒子</p>
-</blockquote>
-<h4 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h4>]]></content>
-      <tags>
-        <tag>Html5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>quick_sort/merge_sort/二分</title>
-    <url>/2022/06/26/quick-sort/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">再回头,你不许</br>
-如曾经不登对</div>  
-
-<span id="more"></span>  
-
-<hr>
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><blockquote>
-<p>先选定一个x,将所有比x小的数放在左半部分,将所有比x大的数放在右半部分<br>再递归处理即可  </p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;<span class="comment">//数据范围1~1000000</span></span><br><span class="line"><span class="type">int</span> n;<span class="comment">//数字个数</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="comment">//l是左边界,r是右边界</span></span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;<span class="comment">//如果范围内数组只有一个数或没有数,直接返回</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> x=q[(l+r)/<span class="number">2</span>];<span class="comment">//分界值x取数组中间值</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[++i]&lt;x);<span class="comment">//左指针右移 直到当前值大于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[--j]&gt;x);<span class="comment">//右指针左移 直到当前值小于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i&lt;j) <span class="built_in">swap</span>(q[i],q[j]); <span class="comment">//交换ij处的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">quick_sort</span>(q,l,j);<span class="comment">//递归处理左半部分</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,j+<span class="number">1</span>,r);<span class="comment">//递归处理右半部分</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d, q[i]);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果分界值选择起点值q[l],数据过强会报错,故选择中间值q[(l+r)&#x2F;2]</p>
-</blockquote>
-<hr>
-<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><blockquote>
-<p>将数组递归成只含一个数字的可排序的区间,最后在两个区间的数据从小到大放进tmp数组,再放进数组里</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> q[N],tmp[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;<span class="comment">//取分界点</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q, l, mid),<span class="built_in">merge_sort</span>(q, mid + <span class="number">1</span>, r);<span class="comment">//递归到最小的区间,从最底层的两个数据排好序,再回到四个数据排好序,始终是两组数据之间的归并,  </span></span><br><span class="line">                                                    <span class="comment">//归并的规模从小到大,2-&gt;4-&gt;8...  </span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = l,j=mid + <span class="number">1</span>,k = <span class="number">0</span>; <span class="comment">//i是左起点,j是右起点  </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(q[i] &lt;= q[j]) tmp[k++] = q[i++]; <span class="comment">//两组数据在各自的内部都已经排好序,从小到大比较两组数据之间的大小就可以将整个数组排序  </span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> tmp[k++] = q[j++];</span><br><span class="line">    &#125;<span class="comment">//归并的过程,从小到大放入</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid) tmp[k++] = q[i++];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j &lt;= r) tmp[k++] = q[j++];<span class="comment">//处理剩下的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = l,k = <span class="number">0</span>; i &lt;= r; i++, k++) q[i] = tmp[k];<span class="comment">//将临时数组中的数据取回  </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;<span class="comment">//n个数字</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);<span class="comment">//读入</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q , <span class="number">0</span> , n<span class="number">-1</span>);<span class="comment">//排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n; i++) cout &lt;&lt; q[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><blockquote>
-<p>在排好序的一组数据中,从中间的数据开始,如果中间的值比目标值小,则目标值在选取值的右边,反之则在左边  直到找到目标值  </p>
-</blockquote>
-<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>给定一个按照升序排列的长度为 n 的整数数组，以及 q 个查询。</p>
-<p>对于每个查询，返回一个元素 k 的起始位置和终止位置（位置从 0 开始计数）。</p>
-<p>如果数组中不存在该元素，则返回 -1 -1。</p>
-<hr>
-<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
-<p>第二行包含 n 个整数（均在 1∼10000 范围内），表示完整数组。</p>
-<p>接下来 q 行，每行包含一个整数 k，表示一个询问元素。</p>
-<hr>
-<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>共 q 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
-<p>如果数组中不存在该元素，则返回 -1 -1。</p>
-<h5 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h5><p>1≤n≤100000<br>1≤q≤10000<br>1≤k≤10000  </p>
-<hr>
-<h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><p>6 3<br>1 2 2 3 3 4<br>3<br>4<br>5  </p>
-<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><p>3 4<br>5 5<br>-1 -1  </p>
-<hr>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, m;<span class="comment">//n个数字,询问个数m</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;q[i]);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    <span class="type">int</span> x;<span class="comment">//询问的数字x</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>,r = n - <span class="number">1</span>; <span class="comment">//左右端点</span></span><br><span class="line"><span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(q[l]!=x) <span class="built_in">printf</span>(<span class="string">&quot;-1 -1\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,l);</span><br><span class="line">        l = <span class="number">0</span>,r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r) + <span class="number">1</span> &gt;&gt; <span class="number">1</span> ; <span class="comment">// 避免因为l + r 是奇数(即这组数据为偶数个)而引起的边界问题 </span></span><br><span class="line">                                        <span class="comment">//如果数据个数为偶数 每次取得的分界点应该不同 因此+1之后再/2(也可以&gt;&gt;1之后+0.5)</span></span><br><span class="line">            <span class="keyword">if</span>(q[mid] &lt;= x) l = mid;</span><br><span class="line">            <span class="keyword">else</span> r = mid <span class="number">-1</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, l);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这道题是找目标数字的左右范围,即找到左起点和右终点  </p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">while</span>(l&lt;r)&#123;    </span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> l = mid + <span class="number">1</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码是找到大于等于x的第一个数 即左端点    </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>运算符重载</title>
     <url>/2023/03/28/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">寂静的雨夜</div>  
@@ -919,139 +1052,6 @@ label标签实现 点击文字也可以进行选择
 ]]></content>
       <tags>
         <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>start with markdown</title>
-    <url>/2022/05/27/start%20with%20md/</url>
-    <content><![CDATA[<blockquote>
-<p>喂<br>长夜,长夜的重负何时是尽头?<br>何时我能得我所求?<br>抵达终极,<br>享受安逸?<br>小路对我说:”<br>从这里,我开始.”</p>
-<blockquote>
-<p> ————阿多尼斯</p>
-</blockquote>
-</blockquote>
-<span id="more"></span>
-
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>在文字前加入1-6个#即为标题,#越少标题越大,对应h1-h6.<br>还可以用&#x3D;&#x3D;&#x3D;&#x3D;识别 一级标题,—识别二级标题</p>
-<p>tips:#与文字之间要加入空格  </p>
-<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p> <em><strong>摘录一段:</strong></em> </p>
-<blockquote>
-<p>我亲爱的，我想起了过往那些百无聊赖的夜晚，我有时是在读陀思妥耶夫斯基，有时是在听威尔第的歌剧，如果手头不那么紧，或许还伴着蒂普提克的香氛。我总是希望假借伟大作品的精神力量来反抗平庸和穷苦，但最后不免患上恋词癖——反倒是更加显出我想要隐藏的卑劣的内里。但是您却不一样，自有您陪伴的夜晚伊始，我才真正捕捉到了生命的活性与真实，一个肮脏的灵魂才找到了归处。 </p>
-</blockquote>
-<p> <em><strong>在两段文字之间加入一行空白就可以实现分段.如下:</strong></em>  </p>
-<blockquote>
-<p>我亲爱的，我想起了过往那些百无聊赖的夜晚，我有时是在读陀思妥耶夫斯基，有时是在听威尔第的歌剧，如果手头不那么紧，或许还伴着蒂普提克的香氛。  </p>
-<p>我总是希望假借伟大作品的精神力量来反抗平庸和穷苦，但最后不免患上恋词癖——反倒是更加显出我想要隐藏的卑劣的内里。但是您却不一样，自有您陪伴的夜晚伊始，我才真正捕捉到了生命的活性与真实，一个肮脏的灵魂才找到了归处。  </p>
-</blockquote>
-<!-- more -->
-<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>在行末加上两个以上的空格按下回车即可生成&lt;hr &#x2F;br&gt;  </p>
-<blockquote>
-<p><em><strong>我向星辰下令，我停泊瞩望,</strong></em><br><em><strong>我让自己登基，</strong></em><br><em><strong>做风的君王。</strong></em>  </p>
-</blockquote>
-<p>以上是没有加空格仅按回车的结果<br>好像并没有什么不同&gt;_-,但是为了兼容性,养成良好的习惯  </p>
-<h2 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h2><p>用**标记 类似h5中的标签,<br><em>一个</em> * &#x3D;italic<br><strong>两个</strong> * &#x3D; strong<br><em><strong>三个</strong></em> * &#x3D;italic+strong  </p>
-<p><em>os:支持自己用h5和css的格式自定义</em>,如下:  </p>
-<div style="font-size: 25px; color: #576690">大小为25像素,颜色为#576690</div>
-
-<h2 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h2><p>用&gt;标记.</p>
-<blockquote>
-<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
-</blockquote>
-<blockquote>
-<p>我始终为你而紧张，为你而颤抖；可是你对此毫无感觉，就像你口袋里装了怀表，你对它紧绷的发条没有感觉一样；<br>这根发条在暗中耐心地为你数着你的钟点，计算着你的时间，以它听不见的心跳陪着你东奔西走。<br>而你在它那嘀嗒不停的几百万秒当中，只有一次向它匆匆瞥了一眼。</p>
-<p>——《一个陌生女人的来信》 ​​​茨威格  </p>
-</blockquote>
-<p>引用一段内的文字只需要在最开始的文字前加上&gt; 如果要引用多段,在空白行加上&gt;即可</p>
-<h3 id="嵌套引用"><a href="#嵌套引用" class="headerlink" title="嵌套引用"></a>嵌套引用</h3><p>在开头加上&gt;&gt;即可将本行内容嵌套到上一个引用的内容中,如下:  </p>
-<blockquote>
-<p>我们多么草率地成为了孤儿。玛琳娜，<br>这是我最后一次呼唤你的名字。<br>大雪落在<br>我锈迹斑斑的气管和肺叶上，<br>说吧：今夜，我的嗓音是一列被截停的火车，<br>你的名字是俄罗斯漫长的国境线。</p>
-<p>我想象我们的相遇，在一场隆重的死亡背面</p>
-<blockquote>
-<p>（玫瑰的矛盾贯穿了他硕大的心）；  </p>
-<blockquote>
-<p>在一九二七年春夜，我们在国境线上相遇<br>因此错过了<br>这个呼啸着奔向终点的世界。<br>而今夜，你是舞曲，世界是错误。  </p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>在引用的内容中可以无限嵌套,跟&gt;的数量有关</p>
-<h3 id="带有其他元素的引用"><a href="#带有其他元素的引用" class="headerlink" title="带有其他元素的引用"></a>带有其他元素的引用</h3><p><em><strong>在引用中加入-或者+</strong></em></p>
-<blockquote>
-<ul>
-<li>你的笑， </li>
-<li>是大海拥抱海岛的笑，</li>
-<li>是星星跳跃浪花的笑，</li>
-<li>是椰树遮掩椰果的笑。</li>
-<li>你笑着，使黑夜奔逃。</li>
-</ul>
-</blockquote>
-<h2 id="列表语法"><a href="#列表语法" class="headerlink" title="列表语法"></a>列表语法</h2><h3 id="有序表"><a href="#有序表" class="headerlink" title="有序表"></a>有序表</h3><p>用1+”.”+” “开始,之后再使用这种格式,无论数字是多少,都会按照顺序,类似h5中的ol表,如下:  </p>
-<ol>
-<li>从1开始</li>
-<li>这个是5</li>
-<li>这个是2</li>
-</ol>
-<h3 id="无序表"><a href="#无序表" class="headerlink" title="无序表"></a>无序表</h3><p>在每个列表项前面添加破折号 (-)、星号 (*) 或加号 (+) 。缩进一个或多个列表项可创建嵌套列表。</p>
-<ul>
-<li>First item</li>
-<li>Second item</li>
-<li>Third item<ul>
-<li>Indented item</li>
-<li>Indented item</li>
-</ul>
-</li>
-<li>Fourth item</li>
-</ul>
-<p>要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符，如下例所示：</p>
-<ul>
-<li><p>This is the first list item.</p>
-</li>
-<li><p>Here’s the second list item.</p>
-<p>I need to add another paragraph below the second list item.</p>
-</li>
-<li><p>And here’s the third list item.  </p>
-<hr></hr></li>
-<li><p>This is the first list item.</p>
-</li>
-<li><p>Here’s the second list item.</p>
-<blockquote>
-<p>A blockquote would look great below the second list item.</p>
-</blockquote>
-</li>
-<li><p>And here’s the third list item.</p>
-<hr></hr>
-代码块通常采用四个空格或一个制表符缩进。当它们被放在列表中时，请将它们缩进八个空格或两个制表符。</li>
-</ul>
-<ol>
-<li><p>Open the file.</p>
-</li>
-<li><p>Find the following code block on line 21:</p>
-<pre><code>&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Test&lt;/title&gt;
-  &lt;/head&gt;
-</code></pre>
-</li>
-<li><p>Update the title to match the name of your website.</p>
-<hr></hr>
- 还可以在有序表中插入无序表</li>
-</ol>
-<h2 id="代码语法"><a href="#代码语法" class="headerlink" title="代码语法"></a>代码语法</h2><h3 id="将单词或语句用反引号标记即可-如下"><a href="#将单词或语句用反引号标记即可-如下" class="headerlink" title="将单词或语句用反引号标记即可,如下:"></a>将单词或语句用反引号标记即可,如下:</h3><p> <code>hugo</code>  </p>
-<h3 id="创建代码块-将代码块的每一行缩进4个字符即可"><a href="#创建代码块-将代码块的每一行缩进4个字符即可" class="headerlink" title="创建代码块,将代码块的每一行缩进4个字符即可"></a>创建代码块,将代码块的每一行缩进4个字符即可</h3><pre><code>#include &lt;bits/stdc++.h&gt;
-using namespace std;
-    int main()&#123;
-        cout&lt;&lt;&quot;hello world&quot;;
-    return 0; 
-&#125;  
-</code></pre>
-<hr>
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>在单独一行上使用三个或多个星号 (***)、破折号 (—) 或下划线 (___) ，并且不能包含其他内容。  </p>
-<hr>
-<hr>
-<hr>
-<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#x6c;&#117;&#120;&#105;&#x61;&#x6f;&#103;&#117;&#111;&#110;&#55;&#48;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#x6c;&#117;&#120;&#105;&#x61;&#x6f;&#103;&#117;&#111;&#110;&#55;&#48;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a>   </p>
-]]></content>
-      <tags>
-        <tag>MarkDown</tag>
       </tags>
   </entry>
 </search>
