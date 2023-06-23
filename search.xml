@@ -1,95 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>DP</title>
-    <url>/2022/06/26/DP/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">天真得只有你</br>
-令神仙鱼归天要怪谁</div>  
-
-<span id="more"></span>
-
-<hr>
-<p>动态规划,从集合角度考虑<br>f[i][j]表示状态<br>状态计算依赖集合的划分  </p>
-<h3 id="摘花生"><a href="#摘花生" class="headerlink" title="摘花生"></a>摘花生</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>Hello Kitty 想摘点花生送给她喜欢的米老鼠。  </p>
-<p>她来到一片有网格状道路的矩形花生地，从西北角进去，东南角出来。  </p>
-<p>地里每个道路的交叉点上都有种着一株花生苗，上面有若干颗花生，经过一株花生苗就能摘走该它上面所有的花生。  </p>
-<p>Hello Kitty 只能向东或向南走，不能向西或向北走。  </p>
-<p>问 Hello Kitty 最多能够摘到多少颗花生。  </p>
-<hr>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1 ≤ T ≤ 100,<br>1≤R,C≤100,<br>0≤M≤1000<br>$$</p>
-<hr>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数 T，代表一共有多少组数据。</p>
-<p>接下来是 T 组数据。</p>
-<p>每组数据的第一行是两个整数，分别代表花生苗的行数 R 和列数 C。</p>
-<p>每组数据的接下来 R 行数据，从北向南依次描述每行花生苗的情况。每行数据有 C 个整数，按从西向东的顺序描述了该行每株花生苗上的花生数目 M。</p>
-<hr>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对每组输入数据，输出一行，内容为 Hello Kitty 能摘到得最多的花生颗数。</p>
-<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><pre><code>2
-2 2
-1 1
-3 4
-2 3
-2 3 4
-1 6 5  
-</code></pre>
-<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><pre><code>8
-16
-</code></pre>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;<span class="comment">//数据范围</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//交叉地上的花生数量</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//当前状态,即从f[1][1]到f[i][j]所有道路中数量最多的  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;<span class="comment">//数据组数 </span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                f[i][j]=<span class="built_in">max</span>(f[i][j<span class="number">-1</span>],f[i<span class="number">-1</span>][j])+w[i][j];</span><br><span class="line">                <span class="comment">//集合的划分依据就是从上往下还是从左往右</span></span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[n][m]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>scanf和printf比cin和cout更快  </p>
-</blockquote>
-<hr>
-<h3 id="最低通行费"><a href="#最低通行费" class="headerlink" title="最低通行费"></a>最低通行费</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>一个商人穿过一个 N×N 的正方形的网格，去参加一个非常重要的商务活动。</p>
-<p>他要从网格的左上角进，右下角出。</p>
-<p>每穿越中间 1 个小方格，都要花费 1 个单位时间。</p>
-<p>商人必须在 (2N−1) 个单位时间穿越出去。</p>
-<p>而在经过中间的每个小方格时，都需要缴纳一定的费用。</p>
-<p>这个商人期望在规定时间内用最少费用穿越出去。</p>
-<p>请问至少需要多少费用？</p>
-<p>注意：不能对角穿越各个小方格（即，只能向上下左右四个方向移动且不能离开网格）。</p>
-<hr>
-<h4 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数，表示正方形的宽度 N。</p>
-<p>后面 N 行，每行 N 个不大于 100 的正整数，为网格上每个小方格的费用。</p>
-<hr>
-<h4 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示至少需要的费用。</p>
-<h4 id="数据范围-1"><a href="#数据范围-1" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1≤N≤100<br>$$</p>
-<hr>
-<h4 id="输入样例：-1"><a href="#输入样例：-1" class="headerlink" title="输入样例："></a>输入样例：</h4><p>5<br>1  4  6  8  10<br>2  5  7  15 17<br>6  8  9  18 20<br>10 11 12 19 21<br>20 23 25 29 33  </p>
-<h4 id="输出样例：-1"><a href="#输出样例：-1" class="headerlink" title="输出样例："></a>输出样例：</h4><p>109  </p>
-<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>样例中，最小值为 109&#x3D;1+2+5+7+9+12+19+21+33。  </p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">110</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">int</span> n;<span class="comment">//矩阵行数/列数  </span></span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//需要的费用</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//状态,所有到当前位置的路径中费用的最小值  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">1</span>&amp;&amp;j==<span class="number">1</span>)</span><br><span class="line">            f[i][j]=w[i][j];<span class="comment">//限制左上角 </span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                f[i][j]=INF;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i<span class="number">-1</span>][j]+w[i][j]);<span class="comment">//只有行数大于1时才能从上往下走</span></span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i][j<span class="number">-1</span>]+w[i][j]);<span class="comment">//比较从上往下和从左往右的状态哪个更小</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, f[n][m]);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>给L小姐的生日便签</title>
-    <url>/2023/03/18/birthday/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #e7659b;text-align: center">memory</div>  
-
-<span id="more"></span>  
-
-<blockquote>
-<p>亲爱的煜儿:   </p>
-<blockquote>
-<p> 初春的晚风轻盈却带着凉意，零星的小雨拍打着宇宙的回声，窗外的弦月更加明朗。如果月亮是每个夜晚的标题,那我每一天的月亮都清晰地写满了你的名字,黑夜在我的身后流动,我的心亮如白昼,你是落入我梦中的月亮,你是我心的荒原上绽放的玫瑰  </p>
-<p>后来,我说了很多话,写了很多诗,但都形容不出见你时的惊艳，你总觉得我形容得不够真实,我却总嫌自己文辞浅薄,我喜欢写夜晚、月亮和梦，因为当这三个词交织，你的名字便会浮现。眼前影影绰绰，雾气来自多年以前，被你扣留的日子依然脉搏清晰，佳煜小姐。      </p>
-<p>我并不对某个季节情有独钟，我会在冬日出轨与将你共度的春天，我会在春日幻想我们在夏末夕阳下的拥抱，你是我一切浪漫的线索，你是我所有的时间和季节里的渴望。我对你情有独钟，佳煜小姐。  </p>
-<p>我明白爱是玫瑰与荆棘同株，我始终爱你，希望你一切的愿望都能实现，所有对你的祝福都能灵验，祝我们有更多清晰的瞬间和确切的爱，祝我们一直是我们。  </p>
-<p>生日快乐，佳煜小姐。<br>我爱你</p>
-</blockquote>
-</blockquote>
-<p><code>2022.03.18</code> </p>
-]]></content>
-      <tags>
-        <tag>with_yu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>背包问题</title>
     <url>/2023/03/29/01%E8%83%8C%E5%8C%85/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #93d5dc;text-align: center">晴朗的春日</div>
@@ -135,54 +46,6 @@
 ]]></content>
       <tags>
         <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>html记忆重构(三)</title>
-    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">我们不再一起漫游,踏着灿烂的月光</div>
-
-<span id="more"></span>
-
-<hr>
-<h3 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h3><h4 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h4><p>在vsc中,配合插件使用.<br>只需要写出缩写就会提示选择,例如:<br><code>font-size</code>: fsz<br><code>width</code>: w<br><code>text-indent</code>: ti<br><code>text-align:center</code>: tac<br><code>height</code>: h<br><code>line-height</code>: lh</p>
-<hr>
-<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><h5 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h5><p>只需要输入标签名后按下回车或者tab即可 例如输入div后按下回车即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="生成多个"><a href="#生成多个" class="headerlink" title="生成多个"></a>生成多个</h5><p>只需要在标签名后加上*x x为数字 即可生成x个该标签.例如:输入<code>div*5</code>后按下tab即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="父子标签"><a href="#父子标签" class="headerlink" title="父子标签"></a>父子标签</h5><p>生成包含关系的标签,用&gt;符号即可.例如输入<br><code>ul&gt;li*5</code>即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="兄弟标签"><a href="#兄弟标签" class="headerlink" title="兄弟标签"></a>兄弟标签</h5><p>生成并列关系的标签,用+即可.例如输入div+p即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="调用class"><a href="#调用class" class="headerlink" title="调用class"></a>调用class</h5><p>生成带class的标签只需要在标签名后面加上.classname即可.例如输入div.test即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>也可以直接输入.classname默认生成带该类选择器的div标签</p>
-<blockquote>
-<p>如果把.换成#即可生成id选择器</p>
-</blockquote>
-<hr>
-<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>可以初始化标签中的内容,只需要在标签名加上<code>&#123;&#125;</code>,<code>&#123;&#125;</code>中的内容就是标签初始带的内容.例如:输入div{test}即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="自增"><a href="#自增" class="headerlink" title="自增"></a>自增</h5><p><code>$</code>表示自增,可以用在类名和内容上.例如:想要生成分别带有demo1,demo2…的类的标签,只需要在类名后加上<code>$</code>即可.输入div.demo$*5即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果要在内容上递增,只需要在<code>&#123;&#125;</code>输入<code>$</code>即可</p>
-<hr>
-<p>眠了  </p>
-]]></content>
-      <tags>
-        <tag>Html5</tag>
       </tags>
   </entry>
   <entry>
@@ -268,6 +131,72 @@
 ]]></content>
       <tags>
         <tag>database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DP</title>
+    <url>/2022/06/26/DP/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">天真得只有你</br>
+令神仙鱼归天要怪谁</div>  
+
+<span id="more"></span>
+
+<hr>
+<p>动态规划,从集合角度考虑<br>f[i][j]表示状态<br>状态计算依赖集合的划分  </p>
+<h3 id="摘花生"><a href="#摘花生" class="headerlink" title="摘花生"></a>摘花生</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>Hello Kitty 想摘点花生送给她喜欢的米老鼠。  </p>
+<p>她来到一片有网格状道路的矩形花生地，从西北角进去，东南角出来。  </p>
+<p>地里每个道路的交叉点上都有种着一株花生苗，上面有若干颗花生，经过一株花生苗就能摘走该它上面所有的花生。  </p>
+<p>Hello Kitty 只能向东或向南走，不能向西或向北走。  </p>
+<p>问 Hello Kitty 最多能够摘到多少颗花生。  </p>
+<hr>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1 ≤ T ≤ 100,<br>1≤R,C≤100,<br>0≤M≤1000<br>$$</p>
+<hr>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数 T，代表一共有多少组数据。</p>
+<p>接下来是 T 组数据。</p>
+<p>每组数据的第一行是两个整数，分别代表花生苗的行数 R 和列数 C。</p>
+<p>每组数据的接下来 R 行数据，从北向南依次描述每行花生苗的情况。每行数据有 C 个整数，按从西向东的顺序描述了该行每株花生苗上的花生数目 M。</p>
+<hr>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对每组输入数据，输出一行，内容为 Hello Kitty 能摘到得最多的花生颗数。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><pre><code>2
+2 2
+1 1
+3 4
+2 3
+2 3 4
+1 6 5  
+</code></pre>
+<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><pre><code>8
+16
+</code></pre>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;<span class="comment">//数据范围</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//交叉地上的花生数量</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//当前状态,即从f[1][1]到f[i][j]所有道路中数量最多的  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;<span class="comment">//数据组数 </span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                f[i][j]=<span class="built_in">max</span>(f[i][j<span class="number">-1</span>],f[i<span class="number">-1</span>][j])+w[i][j];</span><br><span class="line">                <span class="comment">//集合的划分依据就是从上往下还是从左往右</span></span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[n][m]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>scanf和printf比cin和cout更快  </p>
+</blockquote>
+<hr>
+<h3 id="最低通行费"><a href="#最低通行费" class="headerlink" title="最低通行费"></a>最低通行费</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>一个商人穿过一个 N×N 的正方形的网格，去参加一个非常重要的商务活动。</p>
+<p>他要从网格的左上角进，右下角出。</p>
+<p>每穿越中间 1 个小方格，都要花费 1 个单位时间。</p>
+<p>商人必须在 (2N−1) 个单位时间穿越出去。</p>
+<p>而在经过中间的每个小方格时，都需要缴纳一定的费用。</p>
+<p>这个商人期望在规定时间内用最少费用穿越出去。</p>
+<p>请问至少需要多少费用？</p>
+<p>注意：不能对角穿越各个小方格（即，只能向上下左右四个方向移动且不能离开网格）。</p>
+<hr>
+<h4 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数，表示正方形的宽度 N。</p>
+<p>后面 N 行，每行 N 个不大于 100 的正整数，为网格上每个小方格的费用。</p>
+<hr>
+<h4 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示至少需要的费用。</p>
+<h4 id="数据范围-1"><a href="#数据范围-1" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1≤N≤100<br>$$</p>
+<hr>
+<h4 id="输入样例：-1"><a href="#输入样例：-1" class="headerlink" title="输入样例："></a>输入样例：</h4><p>5<br>1  4  6  8  10<br>2  5  7  15 17<br>6  8  9  18 20<br>10 11 12 19 21<br>20 23 25 29 33  </p>
+<h4 id="输出样例：-1"><a href="#输出样例：-1" class="headerlink" title="输出样例："></a>输出样例：</h4><p>109  </p>
+<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>样例中，最小值为 109&#x3D;1+2+5+7+9+12+19+21+33。  </p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">110</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">int</span> n;<span class="comment">//矩阵行数/列数  </span></span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//需要的费用</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//状态,所有到当前位置的路径中费用的最小值  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">1</span>&amp;&amp;j==<span class="number">1</span>)</span><br><span class="line">            f[i][j]=w[i][j];<span class="comment">//限制左上角 </span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                f[i][j]=INF;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i<span class="number">-1</span>][j]+w[i][j]);<span class="comment">//只有行数大于1时才能从上往下走</span></span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i][j<span class="number">-1</span>]+w[i][j]);<span class="comment">//比较从上往下和从左往右的状态哪个更小</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, f[n][m]);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -368,6 +297,86 @@
       </tags>
   </entry>
   <entry>
+    <title>给L小姐的生日便签</title>
+    <url>/2023/03/18/birthday/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #e7659b;text-align: center">memory</div>  
+
+<span id="more"></span>  
+
+<blockquote>
+<p>亲爱的煜儿:   </p>
+<blockquote>
+<p> 初春的晚风轻盈却带着凉意，零星的小雨拍打着宇宙的回声，窗外的弦月更加明朗。如果月亮是每个夜晚的标题,那我每一天的月亮都清晰地写满了你的名字,黑夜在我的身后流动,我的心亮如白昼,你是落入我梦中的月亮,你是我心的荒原上绽放的玫瑰  </p>
+<p>后来,我说了很多话,写了很多诗,但都形容不出见你时的惊艳，你总觉得我形容得不够真实,我却总嫌自己文辞浅薄,我喜欢写夜晚、月亮和梦，因为当这三个词交织，你的名字便会浮现。眼前影影绰绰，雾气来自多年以前，被你扣留的日子依然脉搏清晰，佳煜小姐。      </p>
+<p>我并不对某个季节情有独钟，我会在冬日出轨与将你共度的春天，我会在春日幻想我们在夏末夕阳下的拥抱，你是我一切浪漫的线索，你是我所有的时间和季节里的渴望。我对你情有独钟，佳煜小姐。  </p>
+<p>我明白爱是玫瑰与荆棘同株，我始终爱你，希望你一切的愿望都能实现，所有对你的祝福都能灵验，祝我们有更多清晰的瞬间和确切的爱，祝我们一直是我们。  </p>
+<p>生日快乐，佳煜小姐。<br>我爱你</p>
+</blockquote>
+</blockquote>
+<p><code>2022.03.18</code> </p>
+]]></content>
+      <tags>
+        <tag>with_yu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html记忆重构5</title>
+    <url>/2022/07/11/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%BA%94)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center"></div>
+
+<hr>
+<span id="more"></span>  
+
+<hr>
+<h3 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h3><hr>
+<h5 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h5><p>设置相同的样式,一个样式就会覆盖另一个冲突的样式,遵守就近原则,不冲突的不覆盖  </p>
+<h5 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h5><p>子标签会继承父标签的的某些样式,如 text-, font-, line-, 以及color属性   </p>
+<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>当同一个元素指定多个选择器,根据选择器的权重来执行   </p>
+<p>继承或 * : <code>0,0,0,0</code> ;<br>元素选择器 : <code>0,0,0,1</code> ;<br>类选择器&#x2F;伪类选择器 : <code>0,0,1,0</code> ;<br>ID选择器 : <code>0,1,0,0</code> ;<br>行内样式style&#x3D;”” : <code>1,0,0,0</code> ;<br>!important : 无限大 ;</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>:blue<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>复合选择器有权重叠加的问题 </p>
+</blockquote>
+<hr>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><h5 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h5><p>边框的粗细 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h5><p>边框样式,默认为none;</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-style</span>: dotted/solid/dashed  点线/实线/虚线  </span><br></pre></td></tr></table></figure>
+
+<h5 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h5><p>边框颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-color</span>: <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
+
+<h5 id="复合写法"><a href="#复合写法" class="headerlink" title="复合写法"></a>复合写法</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">20px</span> solid <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>没有先后顺序  </p>
+</blockquote>
+<p><em><strong>可以只设定边框的一条边</strong></em>  </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#fff</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h5><p>边框合并</p>
+<hr>
+<blockquote>
+<p>边框会影响原本盒子的大小 </p>
+</blockquote>
+<h4 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h4><p>内边距,即内容与边框之间的距离</p>
+<p>可以单独写每个方向的内边距 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: </span><br><span class="line">padding-left:  </span><br><span class="line">padding-right: </span><br><span class="line">padding-bottom: </span><br></pre></td></tr></table></figure>
+
+<p>也可以复合写,可以有四种写法 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span>; 上下左右边距都是<span class="number">5px</span>  </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>; 上下边距是<span class="number">5px</span>,左右边距是<span class="number">10px</span></span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span>; 上边距是<span class="number">5px</span>,下边距是<span class="number">20px</span>,左右边距是<span class="number">10px</span> </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span> <span class="number">40px</span>;上右下左分别为<span class="number">5</span>/<span class="number">10</span>/<span class="number">20</span>/<span class="number">40px</span>  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>padding也会影响盒子的大小<br>如果本身没有指定width和height值,padding不会撑开盒子</p>
+</blockquote>
+<h4 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h4>]]></content>
+      <tags>
+        <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>html记忆重构(四)</title>
     <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
@@ -450,85 +459,49 @@
       </tags>
   </entry>
   <entry>
-    <title>给L小姐的情书</title>
-    <url>/2023/02/18/letter/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">你是落入我梦中的月亮</br>
-你是我手心绽放的玫瑰</div>
+    <title>html记忆重构(三)</title>
+    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">我们不再一起漫游,踏着灿烂的月光</div>
+
+<span id="more"></span>
 
 <hr>
-<span id="more"></span>  
-<p>  煜儿，我在梦里闻到了你的发香，我梦到了我们在斯卡布罗的驻足，芜荽、鼠尾草、迷迭香、木棉还有玫瑰，风铃在闹市摆动，梦里的人说着我听不懂的语言，我紧紧地牵着你的手。</p>
-<p>煜儿，我在说，<em><strong>我很想你。</strong></em>  </p>
-<p>最近在洛尔迦的诗集，书里说</p>
+<h3 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h3><h4 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h4><p>在vsc中,配合插件使用.<br>只需要写出缩写就会提示选择,例如:<br><code>font-size</code>: fsz<br><code>width</code>: w<br><code>text-indent</code>: ti<br><code>text-align:center</code>: tac<br><code>height</code>: h<br><code>line-height</code>: lh</p>
+<hr>
+<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><h5 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h5><p>只需要输入标签名后按下回车或者tab即可 例如输入div后按下回车即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="生成多个"><a href="#生成多个" class="headerlink" title="生成多个"></a>生成多个</h5><p>只需要在标签名后加上*x x为数字 即可生成x个该标签.例如:输入<code>div*5</code>后按下tab即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="父子标签"><a href="#父子标签" class="headerlink" title="父子标签"></a>父子标签</h5><p>生成包含关系的标签,用&gt;符号即可.例如输入<br><code>ul&gt;li*5</code>即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="兄弟标签"><a href="#兄弟标签" class="headerlink" title="兄弟标签"></a>兄弟标签</h5><p>生成并列关系的标签,用+即可.例如输入div+p即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="调用class"><a href="#调用class" class="headerlink" title="调用class"></a>调用class</h5><p>生成带class的标签只需要在标签名后面加上.classname即可.例如输入div.test即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也可以直接输入.classname默认生成带该类选择器的div标签</p>
 <blockquote>
-<p>我要把嘴留在你腿间，<br>把灵魂留给照片、晚香玉<br>还有你徘徊的暗涌，<br>我的爱，我的爱，我想要留下<br>提琴与坟墓，华尔兹的绸带。  </p>
+<p>如果把.换成#即可生成id选择器</p>
 </blockquote>
-<p>煜儿，我纷纷的情欲就像提琴收弦时连绵的尾音，每次读到洛尔迦的诗都会想到我们的每一个吻，想到与你共度的每一个夜晚的月相，你是我近乎所有美好记忆的支点，我始终相信爱情是让人发狂的东西，我深深地为你着迷。我爱你，这是我唯一确认的事。  </p>
-<p>煜儿，我总写一些晦涩的诗来表达爱意，希望你能咀嚼那些隐喻和朦胧的爱，但我也愿意直接向你表达我难捱的思念和汹涌的爱意。我讨厌别离，但别离也意味着我又一次踏上了和你重逢的路，我很想你。  </p>
-<p>煜儿，我相信人是有来生的，我从来都不是一个坚定的唯物主义者，我是你的信徒，我就在你神殿里虔诚的祈祷，等待着你的降临。我是一个彻头彻尾的李佳煜主义者。我喜欢桔梗的花语，是”永恒的爱”。  </p>
-<p>煜儿，你就像记忆里周末的清晨，像树林里逃逸的第一缕光线，像夕阳下温暖的归途，你是我所有幻梦的具象，我一切明亮起点。  </p>
-<p>煜儿，我快要写不出情话了，只能笨拙的说出我爱你和我很想你。  </p>
-<p>煜儿，不管怎么说，我很爱你​。   </p>
-<p>也很想你。<br><code>2023.2.18</code> </p>
-<p>​    </p>
+<hr>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>可以初始化标签中的内容,只需要在标签名加上<code>&#123;&#125;</code>,<code>&#123;&#125;</code>中的内容就是标签初始带的内容.例如:输入div{test}即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="自增"><a href="#自增" class="headerlink" title="自增"></a>自增</h5><p><code>$</code>表示自增,可以用在类名和内容上.例如:想要生成分别带有demo1,demo2…的类的标签,只需要在类名后加上<code>$</code>即可.输入div.demo$*5即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要在内容上递增,只需要在<code>&#123;&#125;</code>输入<code>$</code>即可</p>
+<hr>
+<p>眠了  </p>
 ]]></content>
-      <tags>
-        <tag>with_yu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>html记忆重构5</title>
-    <url>/2022/07/11/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%BA%94)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center"></div>
-
-<hr>
-<span id="more"></span>  
-
-<hr>
-<h3 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h3><hr>
-<h5 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h5><p>设置相同的样式,一个样式就会覆盖另一个冲突的样式,遵守就近原则,不冲突的不覆盖  </p>
-<h5 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h5><p>子标签会继承父标签的的某些样式,如 text-, font-, line-, 以及color属性   </p>
-<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>当同一个元素指定多个选择器,根据选择器的权重来执行   </p>
-<p>继承或 * : <code>0,0,0,0</code> ;<br>元素选择器 : <code>0,0,0,1</code> ;<br>类选择器&#x2F;伪类选择器 : <code>0,0,1,0</code> ;<br>ID选择器 : <code>0,1,0,0</code> ;<br>行内样式style&#x3D;”” : <code>1,0,0,0</code> ;<br>!important : 无限大 ;</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>:blue<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>复合选择器有权重叠加的问题 </p>
-</blockquote>
-<hr>
-<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><h5 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h5><p>边框的粗细 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h5><p>边框样式,默认为none;</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-style</span>: dotted/solid/dashed  点线/实线/虚线  </span><br></pre></td></tr></table></figure>
-
-<h5 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h5><p>边框颜色</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-color</span>: <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
-
-<h5 id="复合写法"><a href="#复合写法" class="headerlink" title="复合写法"></a>复合写法</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">20px</span> solid <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>没有先后顺序  </p>
-</blockquote>
-<p><em><strong>可以只设定边框的一条边</strong></em>  </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#fff</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h5><p>边框合并</p>
-<hr>
-<blockquote>
-<p>边框会影响原本盒子的大小 </p>
-</blockquote>
-<h4 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h4><p>内边距,即内容与边框之间的距离</p>
-<p>可以单独写每个方向的内边距 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: </span><br><span class="line">padding-left:  </span><br><span class="line">padding-right: </span><br><span class="line">padding-bottom: </span><br></pre></td></tr></table></figure>
-
-<p>也可以复合写,可以有四种写法 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span>; 上下左右边距都是<span class="number">5px</span>  </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>; 上下边距是<span class="number">5px</span>,左右边距是<span class="number">10px</span></span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span>; 上边距是<span class="number">5px</span>,下边距是<span class="number">20px</span>,左右边距是<span class="number">10px</span> </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span> <span class="number">40px</span>;上右下左分别为<span class="number">5</span>/<span class="number">10</span>/<span class="number">20</span>/<span class="number">40px</span>  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>padding也会影响盒子的大小<br>如果本身没有指定width和height值,padding不会撑开盒子</p>
-</blockquote>
-<h4 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h4>]]></content>
       <tags>
         <tag>Html5</tag>
       </tags>
@@ -667,6 +640,33 @@ label标签实现 点击文字也可以进行选择
 ]]></content>
       <tags>
         <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给L小姐的情书</title>
+    <url>/2023/02/18/letter/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">你是落入我梦中的月亮</br>
+你是我手心绽放的玫瑰</div>
+
+<hr>
+<span id="more"></span>  
+<p>  煜儿，我在梦里闻到了你的发香，我梦到了我们在斯卡布罗的驻足，芜荽、鼠尾草、迷迭香、木棉还有玫瑰，风铃在闹市摆动，梦里的人说着我听不懂的语言，我紧紧地牵着你的手。</p>
+<p>煜儿，我在说，<em><strong>我很想你。</strong></em>  </p>
+<p>最近在洛尔迦的诗集，书里说</p>
+<blockquote>
+<p>我要把嘴留在你腿间，<br>把灵魂留给照片、晚香玉<br>还有你徘徊的暗涌，<br>我的爱，我的爱，我想要留下<br>提琴与坟墓，华尔兹的绸带。  </p>
+</blockquote>
+<p>煜儿，我纷纷的情欲就像提琴收弦时连绵的尾音，每次读到洛尔迦的诗都会想到我们的每一个吻，想到与你共度的每一个夜晚的月相，你是我近乎所有美好记忆的支点，我始终相信爱情是让人发狂的东西，我深深地为你着迷。我爱你，这是我唯一确认的事。  </p>
+<p>煜儿，我总写一些晦涩的诗来表达爱意，希望你能咀嚼那些隐喻和朦胧的爱，但我也愿意直接向你表达我难捱的思念和汹涌的爱意。我讨厌别离，但别离也意味着我又一次踏上了和你重逢的路，我很想你。  </p>
+<p>煜儿，我相信人是有来生的，我从来都不是一个坚定的唯物主义者，我是你的信徒，我就在你神殿里虔诚的祈祷，等待着你的降临。我是一个彻头彻尾的李佳煜主义者。我喜欢桔梗的花语，是”永恒的爱”。  </p>
+<p>煜儿，你就像记忆里周末的清晨，像树林里逃逸的第一缕光线，像夕阳下温暖的归途，你是我所有幻梦的具象，我一切明亮起点。  </p>
+<p>煜儿，我快要写不出情话了，只能笨拙的说出我爱你和我很想你。  </p>
+<p>煜儿，不管怎么说，我很爱你​。   </p>
+<p>也很想你。<br><code>2023.2.18</code> </p>
+<p>​    </p>
+]]></content>
+      <tags>
+        <tag>with_yu</tag>
       </tags>
   </entry>
   <entry>
@@ -1048,7 +1048,7 @@ using namespace std;
 <hr>
 <hr>
 <hr>
-<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#x6c;&#x75;&#120;&#x69;&#x61;&#111;&#x67;&#117;&#111;&#110;&#x37;&#48;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;">&#x6c;&#x75;&#120;&#x69;&#x61;&#111;&#x67;&#117;&#111;&#110;&#x37;&#48;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;</a>   </p>
+<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#x6c;&#x75;&#x78;&#105;&#x61;&#111;&#103;&#x75;&#111;&#110;&#x37;&#x30;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x6c;&#x75;&#x78;&#105;&#x61;&#111;&#103;&#x75;&#111;&#110;&#x37;&#x30;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a>   </p>
 ]]></content>
       <tags>
         <tag>MarkDown</tag>
