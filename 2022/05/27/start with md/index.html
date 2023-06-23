@@ -50,7 +50,7 @@
 
 
 
-
+<link rel="dns-prefetch" href="https://waline-talk-gamma.vercel.app/">
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -229,6 +229,20 @@
     </span>
 
   
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/27/start%20with%20md/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/27/start%20with%20md/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -376,7 +390,7 @@ using namespace std;
 <hr>
 <hr>
 <hr>
-<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#108;&#117;&#120;&#105;&#x61;&#x6f;&#103;&#117;&#111;&#110;&#55;&#x30;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#108;&#117;&#120;&#105;&#x61;&#x6f;&#103;&#117;&#111;&#110;&#55;&#x30;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>   </p>
+<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#x6c;&#x75;&#120;&#x69;&#x61;&#111;&#103;&#x75;&#111;&#110;&#55;&#48;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x6c;&#x75;&#120;&#x69;&#x61;&#111;&#103;&#x75;&#111;&#110;&#55;&#48;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>   </p>
 
     </div>
 
@@ -426,6 +440,7 @@ using namespace std;
 
 
 
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -492,6 +507,17 @@ using namespace std;
 
 
 
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline-talk-gamma.vercel.app/","cssUrl":"https://npm.elemecdn.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://npm.elemecdn.com/@waline/client@v2/dist/waline.js","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/tieba"],"login":"enable","pageSize":10,"el":"#waline","comment":true,"path":"/2022/05/27/start%20with%20md/"}</script>
+<link rel="stylesheet" href="https://npm.elemecdn.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 
 </body>
 </html>
