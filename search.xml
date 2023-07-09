@@ -49,6 +49,72 @@
       </tags>
   </entry>
   <entry>
+    <title>DP</title>
+    <url>/2022/06/26/DP/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">天真得只有你</br>
+令神仙鱼归天要怪谁</div>  
+
+<span id="more"></span>
+
+<hr>
+<p>动态规划,从集合角度考虑<br>f[i][j]表示状态<br>状态计算依赖集合的划分  </p>
+<h3 id="摘花生"><a href="#摘花生" class="headerlink" title="摘花生"></a>摘花生</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>Hello Kitty 想摘点花生送给她喜欢的米老鼠。  </p>
+<p>她来到一片有网格状道路的矩形花生地，从西北角进去，东南角出来。  </p>
+<p>地里每个道路的交叉点上都有种着一株花生苗，上面有若干颗花生，经过一株花生苗就能摘走该它上面所有的花生。  </p>
+<p>Hello Kitty 只能向东或向南走，不能向西或向北走。  </p>
+<p>问 Hello Kitty 最多能够摘到多少颗花生。  </p>
+<hr>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1 ≤ T ≤ 100,<br>1≤R,C≤100,<br>0≤M≤1000<br>$$</p>
+<hr>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数 T，代表一共有多少组数据。</p>
+<p>接下来是 T 组数据。</p>
+<p>每组数据的第一行是两个整数，分别代表花生苗的行数 R 和列数 C。</p>
+<p>每组数据的接下来 R 行数据，从北向南依次描述每行花生苗的情况。每行数据有 C 个整数，按从西向东的顺序描述了该行每株花生苗上的花生数目 M。</p>
+<hr>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对每组输入数据，输出一行，内容为 Hello Kitty 能摘到得最多的花生颗数。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><pre><code>2
+2 2
+1 1
+3 4
+2 3
+2 3 4
+1 6 5  
+</code></pre>
+<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><pre><code>8
+16
+</code></pre>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;<span class="comment">//数据范围</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//交叉地上的花生数量</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//当前状态,即从f[1][1]到f[i][j]所有道路中数量最多的  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;<span class="comment">//数据组数 </span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                f[i][j]=<span class="built_in">max</span>(f[i][j<span class="number">-1</span>],f[i<span class="number">-1</span>][j])+w[i][j];</span><br><span class="line">                <span class="comment">//集合的划分依据就是从上往下还是从左往右</span></span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[n][m]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>scanf和printf比cin和cout更快  </p>
+</blockquote>
+<hr>
+<h3 id="最低通行费"><a href="#最低通行费" class="headerlink" title="最低通行费"></a>最低通行费</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>一个商人穿过一个 N×N 的正方形的网格，去参加一个非常重要的商务活动。</p>
+<p>他要从网格的左上角进，右下角出。</p>
+<p>每穿越中间 1 个小方格，都要花费 1 个单位时间。</p>
+<p>商人必须在 (2N−1) 个单位时间穿越出去。</p>
+<p>而在经过中间的每个小方格时，都需要缴纳一定的费用。</p>
+<p>这个商人期望在规定时间内用最少费用穿越出去。</p>
+<p>请问至少需要多少费用？</p>
+<p>注意：不能对角穿越各个小方格（即，只能向上下左右四个方向移动且不能离开网格）。</p>
+<hr>
+<h4 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数，表示正方形的宽度 N。</p>
+<p>后面 N 行，每行 N 个不大于 100 的正整数，为网格上每个小方格的费用。</p>
+<hr>
+<h4 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示至少需要的费用。</p>
+<h4 id="数据范围-1"><a href="#数据范围-1" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1≤N≤100<br>$$</p>
+<hr>
+<h4 id="输入样例：-1"><a href="#输入样例：-1" class="headerlink" title="输入样例："></a>输入样例：</h4><p>5<br>1  4  6  8  10<br>2  5  7  15 17<br>6  8  9  18 20<br>10 11 12 19 21<br>20 23 25 29 33  </p>
+<h4 id="输出样例：-1"><a href="#输出样例：-1" class="headerlink" title="输出样例："></a>输出样例：</h4><p>109  </p>
+<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>样例中，最小值为 109&#x3D;1+2+5+7+9+12+19+21+33。  </p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">110</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">int</span> n;<span class="comment">//矩阵行数/列数  </span></span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//需要的费用</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//状态,所有到当前位置的路径中费用的最小值  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">1</span>&amp;&amp;j==<span class="number">1</span>)</span><br><span class="line">            f[i][j]=w[i][j];<span class="comment">//限制左上角 </span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                f[i][j]=INF;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i<span class="number">-1</span>][j]+w[i][j]);<span class="comment">//只有行数大于1时才能从上往下走</span></span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i][j<span class="number">-1</span>]+w[i][j]);<span class="comment">//比较从上往下和从左往右的状态哪个更小</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, f[n][m]);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>给L小姐的生日便签</title>
     <url>/2023/03/18/birthday/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #e7659b;text-align: center">memory</div>  
@@ -69,6 +135,71 @@
 ]]></content>
       <tags>
         <tag>with_yu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bustub_Project1_Buffer_clock_replacer</title>
+    <url>/2023/07/10/bustub-p1/</url>
+    <content><![CDATA[<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><h5 id="ubuntu-18-04"><a href="#ubuntu-18-04" class="headerlink" title="ubuntu 18.04"></a>ubuntu 18.04</h5><p>略</p>
+<h5 id="project"><a href="#project" class="headerlink" title="project"></a>project</h5><blockquote>
+<p>由于直接clone仓库是2023版,故如下操作</p>
+</blockquote>
+<p>​		</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/cmu-db/bustub.git</span><br><span class="line">cd bustub</span><br><span class="line">git log</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>找到对应的commit,我选择的是7704f90cb1d9f9cc32f648c68b9fa84952bf1796</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout 7704f90cb1d9f9cc32f648c68b9fa84952bf1796</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>即可倒退到2019的版本</p>
+</blockquote>
+<h5 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h5><blockquote>
+<p>默认的cmake版本为3.10,需使用3.13及以上</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cmake --version</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看cmake版本</span></span><br><span class="line"></span><br><span class="line">sudo apt remove --purge cmake</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">卸载旧版本</span></span><br><span class="line"></span><br><span class="line">wget https://cmake.org/files/v3.13/cmake-3.13.0.tar.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">下载压缩包</span></span><br><span class="line"></span><br><span class="line">tar -xzvf cmake-3.13.0.tar.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">解压</span></span><br><span class="line"></span><br><span class="line">cd cmake-3.13.0</span><br><span class="line"></span><br><span class="line">./bootstrap</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h5 id="build"><a href="#build" class="headerlink" title="build"></a>build</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd bustub</span><br><span class="line">sudo build_support/packages.sh</span><br><span class="line"></span><br><span class="line">mkdir build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<h3 id="clock-replacer"><a href="#clock-replacer" class="headerlink" title="clock_replacer"></a>clock_replacer</h3><h4 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h4><p><code>ClockReplacer</code> 类内部维护了一个 <code>frame</code> 的集合，集合大小和缓冲池的大小一致。</p>
+<p>需要实现四个函数:</p>
+<ul>
+<li><code>Victim(T*)</code> : Starting from the current position of clock hand, find the first frame that is both in the <code>ClockReplacer</code> and with its ref_flag_flag flag set to <code>false</code>. If a frame is in the <code>ClockReplacer</code>, but its ref_flag_flag flag is set to <code>true</code>, change it to <code>false</code> instead. This should be the only method that updates the clock hand.</li>
+<li><code>Pin(T)</code> : This method should be called after a page is pinned to a frame in the <code>BufferPoolManager</code>. It should remove the frame containing the pinned page from the <code>ClockReplacer</code>.</li>
+<li><code>Unpin(T)</code> : This method should be called when the <code>pin_count</code> of a page becomes 0. This method should add the frame containing the unpinned page to the <code>ClockReplacer</code>.</li>
+<li><code>Size()</code> : This method returns the number of frames that are currently in the <code>ClockReplacer</code>.</li>
+</ul>
+<p>添加了三个变量:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">frame_id_t</span> clock_hand_ = <span class="number">0</span>;<span class="comment">//时钟指针成员</span></span><br><span class="line"></span><br><span class="line">std::vector&lt;std::tuple&lt;<span class="type">bool</span>, <span class="type">bool</span>&gt;&gt; frames_; <span class="comment">//tuple中的两个bool变量分别表示是否在													//CLockreplacer中和ref_flag_flag_flag</span></span><br><span class="line"></span><br><span class="line">std::shared_mutex mutex_;  <span class="comment">//读写锁</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="victim"><a href="#victim" class="headerlink" title="victim"></a>victim</h4><p>这个函数是将ClockReplacer中满足条件的<code>frame</code>移出内存,条件如下</p>
+<ul>
+<li>在<code>Clockreplacer</code>中,即当前没有任何的线程访问该<code>frame</code></li>
+<li><code>ref_flag_flag_flag == false</code> 时间替换策略的本质就是,<code>ref_flag_flag_flag</code>表示当前帧是否被修改过,<code>victim()</code>在遍历所有帧时,如果该帧的<code>ref_flag_flag_flag == true</code>,那么表示最近被访问过,如果将其改为<code>false</code>,并且下次<code>clock_hand</code>访问到该<code>frame</code>时仍然为<code>false</code>表示其最近并未被访问过,即可移出内存</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ClockReplacer::Victim</span><span class="params">(<span class="type">frame_id_t</span> *frame_id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function">std::lock_guard&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> &amp;[in_cp,ref_flag_flag_flag] = frames_[clock_hand_];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (in_cp) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (ref_flag_flag_flag) &#123;</span><br><span class="line"></span><br><span class="line">        ref_flag_flag_flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        *frame_id = clock_hand_;</span><br><span class="line"></span><br><span class="line">        in_cp = <span class="literal">false</span>; <span class="comment">//移出内存</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    clock_hand_ = (clock_hand_ + <span class="number">1</span>) % frames_.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="pin"><a href="#pin" class="headerlink" title="pin"></a>pin</h4><p>这个函数是将指定的<code>frame</code>调入<code>BufferPool</code>,</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ClockReplacer::Pin</span><span class="params">(<span class="type">frame_id_t</span> frame_id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">assert</span>(<span class="built_in">static_cast</span>&lt;<span class="type">size_t</span>&gt;(frame_id) &lt; frames_.<span class="built_in">size</span>());<span class="comment">//断言,frame_id要小于frames数量</span></span><br><span class="line"></span><br><span class="line">  <span class="function">std::lock_guard&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> &amp;[in_cp, ref_flag_flag] = frames_[frame_id];</span><br><span class="line"></span><br><span class="line">  in_cp = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  ref_flag_flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="unpin"><a href="#unpin" class="headerlink" title="unpin"></a>unpin</h4><p>这个函数是线程调用该<code>frame</code>完毕,将其调入<code>Clockreplacer</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ClockReplacer::Unpin</span><span class="params">(<span class="type">frame_id_t</span> frame_id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">assert</span>(<span class="built_in">static_cast</span>&lt;<span class="type">size_t</span>&gt;(frame_id) &lt; frames_.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">  <span class="function">std::lock_guard&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> &amp;[in_cp, ref_flag] = frames_[frame_id];</span><br><span class="line"></span><br><span class="line">  in_cp = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  ref_flag = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Size"><a href="#Size" class="headerlink" title="Size"></a>Size</h4><p>这个函数获取当前ClockReplacer中所有<code>frame</code>的数量</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ClockReplacer::Size</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">std::shared_lock&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="type">size_t</span> size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;[in_cp, ref_flag] : frames_) &#123;</span><br><span class="line"></span><br><span class="line">    size += in_cp;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> size;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="test"><a href="#test" class="headerlink" title="test"></a>test</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make clock_replacer_test</span><br><span class="line"></span><br><span class="line">./test/clock_replacer_test</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>bustub</tag>
       </tags>
   </entry>
   <entry>
@@ -154,120 +285,6 @@
 ]]></content>
       <tags>
         <tag>database</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DP</title>
-    <url>/2022/06/26/DP/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">天真得只有你</br>
-令神仙鱼归天要怪谁</div>  
-
-<span id="more"></span>
-
-<hr>
-<p>动态规划,从集合角度考虑<br>f[i][j]表示状态<br>状态计算依赖集合的划分  </p>
-<h3 id="摘花生"><a href="#摘花生" class="headerlink" title="摘花生"></a>摘花生</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>Hello Kitty 想摘点花生送给她喜欢的米老鼠。  </p>
-<p>她来到一片有网格状道路的矩形花生地，从西北角进去，东南角出来。  </p>
-<p>地里每个道路的交叉点上都有种着一株花生苗，上面有若干颗花生，经过一株花生苗就能摘走该它上面所有的花生。  </p>
-<p>Hello Kitty 只能向东或向南走，不能向西或向北走。  </p>
-<p>问 Hello Kitty 最多能够摘到多少颗花生。  </p>
-<hr>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1 ≤ T ≤ 100,<br>1≤R,C≤100,<br>0≤M≤1000<br>$$</p>
-<hr>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数 T，代表一共有多少组数据。</p>
-<p>接下来是 T 组数据。</p>
-<p>每组数据的第一行是两个整数，分别代表花生苗的行数 R 和列数 C。</p>
-<p>每组数据的接下来 R 行数据，从北向南依次描述每行花生苗的情况。每行数据有 C 个整数，按从西向东的顺序描述了该行每株花生苗上的花生数目 M。</p>
-<hr>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对每组输入数据，输出一行，内容为 Hello Kitty 能摘到得最多的花生颗数。</p>
-<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><pre><code>2
-2 2
-1 1
-3 4
-2 3
-2 3 4
-1 6 5  
-</code></pre>
-<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><pre><code>8
-16
-</code></pre>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;<span class="comment">//数据范围</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//交叉地上的花生数量</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//当前状态,即从f[1][1]到f[i][j]所有道路中数量最多的  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;<span class="comment">//数据组数 </span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                f[i][j]=<span class="built_in">max</span>(f[i][j<span class="number">-1</span>],f[i<span class="number">-1</span>][j])+w[i][j];</span><br><span class="line">                <span class="comment">//集合的划分依据就是从上往下还是从左往右</span></span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[n][m]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>scanf和printf比cin和cout更快  </p>
-</blockquote>
-<hr>
-<h3 id="最低通行费"><a href="#最低通行费" class="headerlink" title="最低通行费"></a>最低通行费</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>一个商人穿过一个 N×N 的正方形的网格，去参加一个非常重要的商务活动。</p>
-<p>他要从网格的左上角进，右下角出。</p>
-<p>每穿越中间 1 个小方格，都要花费 1 个单位时间。</p>
-<p>商人必须在 (2N−1) 个单位时间穿越出去。</p>
-<p>而在经过中间的每个小方格时，都需要缴纳一定的费用。</p>
-<p>这个商人期望在规定时间内用最少费用穿越出去。</p>
-<p>请问至少需要多少费用？</p>
-<p>注意：不能对角穿越各个小方格（即，只能向上下左右四个方向移动且不能离开网格）。</p>
-<hr>
-<h4 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行是一个整数，表示正方形的宽度 N。</p>
-<p>后面 N 行，每行 N 个不大于 100 的正整数，为网格上每个小方格的费用。</p>
-<hr>
-<h4 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示至少需要的费用。</p>
-<h4 id="数据范围-1"><a href="#数据范围-1" class="headerlink" title="数据范围"></a>数据范围</h4><p>$$<br>1≤N≤100<br>$$</p>
-<hr>
-<h4 id="输入样例：-1"><a href="#输入样例：-1" class="headerlink" title="输入样例："></a>输入样例：</h4><p>5<br>1  4  6  8  10<br>2  5  7  15 17<br>6  8  9  18 20<br>10 11 12 19 21<br>20 23 25 29 33  </p>
-<h4 id="输出样例：-1"><a href="#输出样例：-1" class="headerlink" title="输出样例："></a>输出样例：</h4><p>109  </p>
-<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>样例中，最小值为 109&#x3D;1+2+5+7+9+12+19+21+33。  </p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">110</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">int</span> n;<span class="comment">//矩阵行数/列数  </span></span><br><span class="line"><span class="type">int</span> w[N][N];<span class="comment">//需要的费用</span></span><br><span class="line"><span class="type">int</span> f[N][N];<span class="comment">//状态,所有到当前位置的路径中费用的最小值  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">1</span>&amp;&amp;j==<span class="number">1</span>)</span><br><span class="line">            f[i][j]=w[i][j];<span class="comment">//限制左上角 </span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                f[i][j]=INF;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i<span class="number">-1</span>][j]+w[i][j]);<span class="comment">//只有行数大于1时才能从上往下走</span></span><br><span class="line">                f[i][j]=<span class="built_in">min</span>(f[i][j],f[i][j<span class="number">-1</span>]+w[i][j]);<span class="comment">//比较从上往下和从左往右的状态哪个更小</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, f[n][m]);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>html记忆重构(三)</title>
-    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">我们不再一起漫游,踏着灿烂的月光</div>
-
-<span id="more"></span>
-
-<hr>
-<h3 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h3><h4 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h4><p>在vsc中,配合插件使用.<br>只需要写出缩写就会提示选择,例如:<br><code>font-size</code>: fsz<br><code>width</code>: w<br><code>text-indent</code>: ti<br><code>text-align:center</code>: tac<br><code>height</code>: h<br><code>line-height</code>: lh</p>
-<hr>
-<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><h5 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h5><p>只需要输入标签名后按下回车或者tab即可 例如输入div后按下回车即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="生成多个"><a href="#生成多个" class="headerlink" title="生成多个"></a>生成多个</h5><p>只需要在标签名后加上*x x为数字 即可生成x个该标签.例如:输入<code>div*5</code>后按下tab即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="父子标签"><a href="#父子标签" class="headerlink" title="父子标签"></a>父子标签</h5><p>生成包含关系的标签,用&gt;符号即可.例如输入<br><code>ul&gt;li*5</code>即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="兄弟标签"><a href="#兄弟标签" class="headerlink" title="兄弟标签"></a>兄弟标签</h5><p>生成并列关系的标签,用+即可.例如输入div+p即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="调用class"><a href="#调用class" class="headerlink" title="调用class"></a>调用class</h5><p>生成带class的标签只需要在标签名后面加上.classname即可.例如输入div.test即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>也可以直接输入.classname默认生成带该类选择器的div标签</p>
-<blockquote>
-<p>如果把.换成#即可生成id选择器</p>
-</blockquote>
-<hr>
-<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>可以初始化标签中的内容,只需要在标签名加上<code>&#123;&#125;</code>,<code>&#123;&#125;</code>中的内容就是标签初始带的内容.例如:输入div{test}即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="自增"><a href="#自增" class="headerlink" title="自增"></a>自增</h5><p><code>$</code>表示自增,可以用在类名和内容上.例如:想要生成分别带有demo1,demo2…的类的标签,只需要在类名后加上<code>$</code>即可.输入div.demo$*5即可生成</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果要在内容上递增,只需要在<code>&#123;&#125;</code>输入<code>$</code>即可</p>
-<hr>
-<p>眠了  </p>
-]]></content>
-      <tags>
-        <tag>Html5</tag>
       </tags>
   </entry>
   <entry>
@@ -362,6 +379,193 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>即可将该样式表应用到本页面</p>
 <h4 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h4><h5 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h5><p>打游戏去咯,happy,开摆  </p>
+]]></content>
+      <tags>
+        <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html记忆重构(三)</title>
+    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%B8%89)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">我们不再一起漫游,踏着灿烂的月光</div>
+
+<span id="more"></span>
+
+<hr>
+<h3 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h3><h4 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h4><p>在vsc中,配合插件使用.<br>只需要写出缩写就会提示选择,例如:<br><code>font-size</code>: fsz<br><code>width</code>: w<br><code>text-indent</code>: ti<br><code>text-align:center</code>: tac<br><code>height</code>: h<br><code>line-height</code>: lh</p>
+<hr>
+<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><h5 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h5><p>只需要输入标签名后按下回车或者tab即可 例如输入div后按下回车即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="生成多个"><a href="#生成多个" class="headerlink" title="生成多个"></a>生成多个</h5><p>只需要在标签名后加上*x x为数字 即可生成x个该标签.例如:输入<code>div*5</code>后按下tab即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="父子标签"><a href="#父子标签" class="headerlink" title="父子标签"></a>父子标签</h5><p>生成包含关系的标签,用&gt;符号即可.例如输入<br><code>ul&gt;li*5</code>即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="兄弟标签"><a href="#兄弟标签" class="headerlink" title="兄弟标签"></a>兄弟标签</h5><p>生成并列关系的标签,用+即可.例如输入div+p即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="调用class"><a href="#调用class" class="headerlink" title="调用class"></a>调用class</h5><p>生成带class的标签只需要在标签名后面加上.classname即可.例如输入div.test即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也可以直接输入.classname默认生成带该类选择器的div标签</p>
+<blockquote>
+<p>如果把.换成#即可生成id选择器</p>
+</blockquote>
+<hr>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>可以初始化标签中的内容,只需要在标签名加上<code>&#123;&#125;</code>,<code>&#123;&#125;</code>中的内容就是标签初始带的内容.例如:输入div{test}即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="自增"><a href="#自增" class="headerlink" title="自增"></a>自增</h5><p><code>$</code>表示自增,可以用在类名和内容上.例如:想要生成分别带有demo1,demo2…的类的标签,只需要在类名后加上<code>$</code>即可.输入div.demo$*5即可生成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要在内容上递增,只需要在<code>&#123;&#125;</code>输入<code>$</code>即可</p>
+<hr>
+<p>眠了  </p>
+]]></content>
+      <tags>
+        <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html记忆重构5</title>
+    <url>/2022/07/11/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%BA%94)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center"></div>
+
+<hr>
+<span id="more"></span>  
+
+<hr>
+<h3 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h3><hr>
+<h5 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h5><p>设置相同的样式,一个样式就会覆盖另一个冲突的样式,遵守就近原则,不冲突的不覆盖  </p>
+<h5 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h5><p>子标签会继承父标签的的某些样式,如 text-, font-, line-, 以及color属性   </p>
+<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>当同一个元素指定多个选择器,根据选择器的权重来执行   </p>
+<p>继承或 * : <code>0,0,0,0</code> ;<br>元素选择器 : <code>0,0,0,1</code> ;<br>类选择器&#x2F;伪类选择器 : <code>0,0,1,0</code> ;<br>ID选择器 : <code>0,1,0,0</code> ;<br>行内样式style&#x3D;”” : <code>1,0,0,0</code> ;<br>!important : 无限大 ;</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>:blue<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>复合选择器有权重叠加的问题 </p>
+</blockquote>
+<hr>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><h5 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h5><p>边框的粗细 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h5><p>边框样式,默认为none;</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-style</span>: dotted/solid/dashed  点线/实线/虚线  </span><br></pre></td></tr></table></figure>
+
+<h5 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h5><p>边框颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-color</span>: <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
+
+<h5 id="复合写法"><a href="#复合写法" class="headerlink" title="复合写法"></a>复合写法</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">20px</span> solid <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>没有先后顺序  </p>
+</blockquote>
+<p><em><strong>可以只设定边框的一条边</strong></em>  </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#fff</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h5><p>边框合并</p>
+<hr>
+<blockquote>
+<p>边框会影响原本盒子的大小 </p>
+</blockquote>
+<h4 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h4><p>内边距,即内容与边框之间的距离</p>
+<p>可以单独写每个方向的内边距 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: </span><br><span class="line">padding-left:  </span><br><span class="line">padding-right: </span><br><span class="line">padding-bottom: </span><br></pre></td></tr></table></figure>
+
+<p>也可以复合写,可以有四种写法 </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span>; 上下左右边距都是<span class="number">5px</span>  </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>; 上下边距是<span class="number">5px</span>,左右边距是<span class="number">10px</span></span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span>; 上边距是<span class="number">5px</span>,下边距是<span class="number">20px</span>,左右边距是<span class="number">10px</span> </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span> <span class="number">40px</span>;上右下左分别为<span class="number">5</span>/<span class="number">10</span>/<span class="number">20</span>/<span class="number">40px</span>  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>padding也会影响盒子的大小<br>如果本身没有指定width和height值,padding不会撑开盒子</p>
+</blockquote>
+<h4 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h4>]]></content>
+      <tags>
+        <tag>Html5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html记忆重构(四)</title>
+    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
+
+<span id="more"></span>
+
+<hr>
+<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><p>可以精确地选择到标签中的标签.例如有多个li,我只想修改无序表中的li的样式,只需要在类选择器li的前面加上ul,例如输入</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: pink;</span><br><span class="line">        <span class="attribute">font-size</span>: xx-large;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>就可以将无序表中的字体颜色和字体大小修改成想要的样式</p>
+<blockquote>
+<p>如果只想修改li中的某一类标签,可以继续选择,只需要在后面加上标签名即可</p>
+</blockquote>
+<hr>
+<p>如果有多个ul,而我们只想修改某一个ul中的li,只需要给该ul添加一个类,同时将ul改成.classname即可</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: none;</span><br><span class="line">        <span class="attribute">color</span>: orange;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>格式如下:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span>&gt;<span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">25px</span></span><br><span class="line">    line-height:<span class="number">25px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在父类的后面加上<code>&gt;</code>,则选择最近一级的子元素,亲儿子元素</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>亲儿子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>孙子<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h3><p>要给多个类选择器添加同样的属性,只需要用<code>,</code>即可,如下</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="链接伪类选择器"><a href="#链接伪类选择器" class="headerlink" title="链接伪类选择器"></a>链接伪类选择器</h3><p>以链接为例,可以修改其各个状态的属性</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">     <span class="attribute">text-decoration</span>: none;//去掉下划线</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/* 未访问过的链接  a:link*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 访问过的链接  a:visited*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#576690</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标经过的链接 a:hover */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标按下还未弹起的链接 a:active */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aqua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里只修改了链接的各种状态下的颜色.</p>
+<hr>
+<h3 id="focus语法"><a href="#focus语法" class="headerlink" title="focus语法"></a>focus语法</h3><p>为input标签添加focus属性,在聚焦该input标签时的属性]</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">       <span class="attribute">color</span>: pink;</span><br><span class="line">       <span class="attribute">background-color</span>: <span class="number">#576690</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>未聚焦时,文本框为白色背景,聚焦后,背景颜色变为#576690,字体颜色变为pink</p>
+</blockquote>
+<hr>
+<h3 id="块级元素-x2F-行内元素-x2F-行内块元素"><a href="#块级元素-x2F-行内元素-x2F-行内块元素" class="headerlink" title="块级元素&#x2F;行内元素&#x2F;行内块元素"></a>块级元素&#x2F;行内元素&#x2F;行内块元素</h3><p>块元素典型的是div,可以转换为其他两种形式.</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">display</span>: block;转换为块元素</span><br><span class="line"><span class="attribute">display</span>: inline;转换为行内元素</span><br><span class="line"><span class="attribute">display</span>: inline-block;转换为行内块元素</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>tips: 将行高设置为块的高度即可实现单行文字垂直居中</p>
+</blockquote>
+<hr>
+<h3 id="背景相关"><a href="#背景相关" class="headerlink" title="背景相关"></a>背景相关</h3><h4 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="number">#576690</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>默认为transparent  </p>
+</blockquote>
+<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">绝对路径/相对路径/网址</span>)    </span><br></pre></td></tr></table></figure>
+
+<h5 id="背景平铺"><a href="#背景平铺" class="headerlink" title="背景平铺"></a>背景平铺</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span>: repeat; //默认横纵都平铺  </span><br><span class="line"><span class="attribute">background-repeat</span>: no-repeat; //不平铺   <span class="attribute">background-repeat</span>: repeat-x; //沿横向平铺 <span class="attribute">background-repeat</span>: repeat-y;  //沿纵向平铺  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>背景图片可以盖住背景颜色  </p>
+</blockquote>
+<h5 id="背景图片的位置"><a href="#背景图片的位置" class="headerlink" title="背景图片的位置"></a>背景图片的位置</h5><blockquote>
+<p>比直接插入图片更好控制图片的位置  </p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-position</span>: x y;</span><br><span class="line">//可以是方位名词也可以是精确单位   </span><br><span class="line">//方位名词: center top bottom left right  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方位词不用分先后<br>如果方位词只有一个 另一个默认居中对齐<br>    &#x2F;&#x2F;精确单位: 百分数 或者由数字和单位组成的长度值<br>严格遵守x在前,y在后,如果只指定了一个值,就是x的值,y默认居中对齐  </p>
+</blockquote>
+<h5 id="背景附着-x2F-背景图像固定"><a href="#背景附着-x2F-背景图像固定" class="headerlink" title="背景附着&#x2F;背景图像固定"></a>背景附着&#x2F;背景图像固定</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span>:scroll //随内容滚动而滚动  </span><br><span class="line">background-attachment:fixed //背景图像固定  </span><br></pre></td></tr></table></figure>
+
+<h4 id="背景属性的复合写法"><a href="#背景属性的复合写法" class="headerlink" title="背景属性的复合写法"></a>背景属性的复合写法</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background</span>: 颜色 图片地址 平铺 图像滚动 图片位置 </span><br><span class="line">//没有先后顺序  </span><br></pre></td></tr></table></figure>
+
+<h4 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)  </span><br><span class="line">//在rgb的基础上加上了<span class="built_in">alpha</span>(透明度)这个参数 <span class="number">0</span>~<span class="number">1</span> <span class="number">0</span>表示完全透明 <span class="number">1</span>表示完全不透明  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>0.5可以写成.5</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>Html5</tag>
@@ -504,145 +708,6 @@ label标签实现 点击文字也可以进行选择
       </tags>
   </entry>
   <entry>
-    <title>html记忆重构(四)</title>
-    <url>/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
-
-<span id="more"></span>
-
-<hr>
-<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><p>可以精确地选择到标签中的标签.例如有多个li,我只想修改无序表中的li的样式,只需要在类选择器li的前面加上ul,例如输入</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: pink;</span><br><span class="line">        <span class="attribute">font-size</span>: xx-large;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>就可以将无序表中的字体颜色和字体大小修改成想要的样式</p>
-<blockquote>
-<p>如果只想修改li中的某一类标签,可以继续选择,只需要在后面加上标签名即可</p>
-</blockquote>
-<hr>
-<p>如果有多个ul,而我们只想修改某一个ul中的li,只需要给该ul添加一个类,同时将ul改成.classname即可</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: none;</span><br><span class="line">        <span class="attribute">color</span>: orange;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>格式如下:</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.test</span>&gt;<span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">25px</span></span><br><span class="line">    line-height:<span class="number">25px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在父类的后面加上<code>&gt;</code>,则选择最近一级的子元素,亲儿子元素</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>亲儿子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>孙子<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h3><p>要给多个类选择器添加同样的属性,只需要用<code>,</code>即可,如下</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-class">.test</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="链接伪类选择器"><a href="#链接伪类选择器" class="headerlink" title="链接伪类选择器"></a>链接伪类选择器</h3><p>以链接为例,可以修改其各个状态的属性</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">     <span class="attribute">text-decoration</span>: none;//去掉下划线</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/* 未访问过的链接  a:link*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 访问过的链接  a:visited*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#576690</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标经过的链接 a:hover */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标按下还未弹起的链接 a:active */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aqua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里只修改了链接的各种状态下的颜色.</p>
-<hr>
-<h3 id="focus语法"><a href="#focus语法" class="headerlink" title="focus语法"></a>focus语法</h3><p>为input标签添加focus属性,在聚焦该input标签时的属性]</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">       <span class="attribute">color</span>: pink;</span><br><span class="line">       <span class="attribute">background-color</span>: <span class="number">#576690</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>未聚焦时,文本框为白色背景,聚焦后,背景颜色变为#576690,字体颜色变为pink</p>
-</blockquote>
-<hr>
-<h3 id="块级元素-x2F-行内元素-x2F-行内块元素"><a href="#块级元素-x2F-行内元素-x2F-行内块元素" class="headerlink" title="块级元素&#x2F;行内元素&#x2F;行内块元素"></a>块级元素&#x2F;行内元素&#x2F;行内块元素</h3><p>块元素典型的是div,可以转换为其他两种形式.</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">display</span>: block;转换为块元素</span><br><span class="line"><span class="attribute">display</span>: inline;转换为行内元素</span><br><span class="line"><span class="attribute">display</span>: inline-block;转换为行内块元素</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>tips: 将行高设置为块的高度即可实现单行文字垂直居中</p>
-</blockquote>
-<hr>
-<h3 id="背景相关"><a href="#背景相关" class="headerlink" title="背景相关"></a>背景相关</h3><h4 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="number">#576690</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>默认为transparent  </p>
-</blockquote>
-<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">绝对路径/相对路径/网址</span>)    </span><br></pre></td></tr></table></figure>
-
-<h5 id="背景平铺"><a href="#背景平铺" class="headerlink" title="背景平铺"></a>背景平铺</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span>: repeat; //默认横纵都平铺  </span><br><span class="line"><span class="attribute">background-repeat</span>: no-repeat; //不平铺   <span class="attribute">background-repeat</span>: repeat-x; //沿横向平铺 <span class="attribute">background-repeat</span>: repeat-y;  //沿纵向平铺  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>背景图片可以盖住背景颜色  </p>
-</blockquote>
-<h5 id="背景图片的位置"><a href="#背景图片的位置" class="headerlink" title="背景图片的位置"></a>背景图片的位置</h5><blockquote>
-<p>比直接插入图片更好控制图片的位置  </p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-position</span>: x y;</span><br><span class="line">//可以是方位名词也可以是精确单位   </span><br><span class="line">//方位名词: center top bottom left right  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>方位词不用分先后<br>如果方位词只有一个 另一个默认居中对齐<br>    &#x2F;&#x2F;精确单位: 百分数 或者由数字和单位组成的长度值<br>严格遵守x在前,y在后,如果只指定了一个值,就是x的值,y默认居中对齐  </p>
-</blockquote>
-<h5 id="背景附着-x2F-背景图像固定"><a href="#背景附着-x2F-背景图像固定" class="headerlink" title="背景附着&#x2F;背景图像固定"></a>背景附着&#x2F;背景图像固定</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span>:scroll //随内容滚动而滚动  </span><br><span class="line">background-attachment:fixed //背景图像固定  </span><br></pre></td></tr></table></figure>
-
-<h4 id="背景属性的复合写法"><a href="#背景属性的复合写法" class="headerlink" title="背景属性的复合写法"></a>背景属性的复合写法</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background</span>: 颜色 图片地址 平铺 图像滚动 图片位置 </span><br><span class="line">//没有先后顺序  </span><br></pre></td></tr></table></figure>
-
-<h4 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)  </span><br><span class="line">//在rgb的基础上加上了<span class="built_in">alpha</span>(透明度)这个参数 <span class="number">0</span>~<span class="number">1</span> <span class="number">0</span>表示完全透明 <span class="number">1</span>表示完全不透明  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>0.5可以写成.5</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Html5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>html记忆重构5</title>
-    <url>/2022/07/11/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E4%BA%94)/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center"></div>
-
-<hr>
-<span id="more"></span>  
-
-<hr>
-<h3 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h3><hr>
-<h5 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h5><p>设置相同的样式,一个样式就会覆盖另一个冲突的样式,遵守就近原则,不冲突的不覆盖  </p>
-<h5 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h5><p>子标签会继承父标签的的某些样式,如 text-, font-, line-, 以及color属性   </p>
-<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>当同一个元素指定多个选择器,根据选择器的权重来执行   </p>
-<p>继承或 * : <code>0,0,0,0</code> ;<br>元素选择器 : <code>0,0,0,1</code> ;<br>类选择器&#x2F;伪类选择器 : <code>0,0,1,0</code> ;<br>ID选择器 : <code>0,1,0,0</code> ;<br>行内样式style&#x3D;”” : <code>1,0,0,0</code> ;<br>!important : 无限大 ;</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>:blue<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>复合选择器有权重叠加的问题 </p>
-</blockquote>
-<hr>
-<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><h5 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h5><p>边框的粗细 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h5><p>边框样式,默认为none;</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-style</span>: dotted/solid/dashed  点线/实线/虚线  </span><br></pre></td></tr></table></figure>
-
-<h5 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h5><p>边框颜色</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-color</span>: <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
-
-<h5 id="复合写法"><a href="#复合写法" class="headerlink" title="复合写法"></a>复合写法</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">20px</span> solid <span class="number">#fff</span>  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>没有先后顺序  </p>
-</blockquote>
-<p><em><strong>可以只设定边框的一条边</strong></em>  </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#fff</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h5><p>边框合并</p>
-<hr>
-<blockquote>
-<p>边框会影响原本盒子的大小 </p>
-</blockquote>
-<h4 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h4><p>内边距,即内容与边框之间的距离</p>
-<p>可以单独写每个方向的内边距 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: </span><br><span class="line">padding-left:  </span><br><span class="line">padding-right: </span><br><span class="line">padding-bottom: </span><br></pre></td></tr></table></figure>
-
-<p>也可以复合写,可以有四种写法 </p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span>; 上下左右边距都是<span class="number">5px</span>  </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>; 上下边距是<span class="number">5px</span>,左右边距是<span class="number">10px</span></span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span>; 上边距是<span class="number">5px</span>,下边距是<span class="number">20px</span>,左右边距是<span class="number">10px</span> </span><br><span class="line"><span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">20px</span> <span class="number">40px</span>;上右下左分别为<span class="number">5</span>/<span class="number">10</span>/<span class="number">20</span>/<span class="number">40px</span>  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>padding也会影响盒子的大小<br>如果本身没有指定width和height值,padding不会撑开盒子</p>
-</blockquote>
-<h4 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h4>]]></content>
-      <tags>
-        <tag>Html5</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>给L小姐的情书</title>
     <url>/2023/02/18/letter/</url>
     <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">你是落入我梦中的月亮</br>
@@ -667,61 +732,6 @@ label标签实现 点击文字也可以进行选择
 ]]></content>
       <tags>
         <tag>with_yu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>quick_sort/merge_sort/二分</title>
-    <url>/2022/06/26/quick-sort/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">再回头,你不许</br>
-如曾经不登对</div>  
-
-<span id="more"></span>  
-
-<hr>
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><blockquote>
-<p>先选定一个x,将所有比x小的数放在左半部分,将所有比x大的数放在右半部分<br>再递归处理即可  </p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;<span class="comment">//数据范围1~1000000</span></span><br><span class="line"><span class="type">int</span> n;<span class="comment">//数字个数</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="comment">//l是左边界,r是右边界</span></span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;<span class="comment">//如果范围内数组只有一个数或没有数,直接返回</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> x=q[(l+r)/<span class="number">2</span>];<span class="comment">//分界值x取数组中间值</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[++i]&lt;x);<span class="comment">//左指针右移 直到当前值大于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[--j]&gt;x);<span class="comment">//右指针左移 直到当前值小于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i&lt;j) <span class="built_in">swap</span>(q[i],q[j]); <span class="comment">//交换ij处的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">quick_sort</span>(q,l,j);<span class="comment">//递归处理左半部分</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,j+<span class="number">1</span>,r);<span class="comment">//递归处理右半部分</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d, q[i]);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果分界值选择起点值q[l],数据过强会报错,故选择中间值q[(l+r)&#x2F;2]</p>
-</blockquote>
-<hr>
-<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><blockquote>
-<p>将数组递归成只含一个数字的可排序的区间,最后在两个区间的数据从小到大放进tmp数组,再放进数组里</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> q[N],tmp[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;<span class="comment">//取分界点</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q, l, mid),<span class="built_in">merge_sort</span>(q, mid + <span class="number">1</span>, r);<span class="comment">//递归到最小的区间,从最底层的两个数据排好序,再回到四个数据排好序,始终是两组数据之间的归并,  </span></span><br><span class="line">                                                    <span class="comment">//归并的规模从小到大,2-&gt;4-&gt;8...  </span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = l,j=mid + <span class="number">1</span>,k = <span class="number">0</span>; <span class="comment">//i是左起点,j是右起点  </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(q[i] &lt;= q[j]) tmp[k++] = q[i++]; <span class="comment">//两组数据在各自的内部都已经排好序,从小到大比较两组数据之间的大小就可以将整个数组排序  </span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> tmp[k++] = q[j++];</span><br><span class="line">    &#125;<span class="comment">//归并的过程,从小到大放入</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid) tmp[k++] = q[i++];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j &lt;= r) tmp[k++] = q[j++];<span class="comment">//处理剩下的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = l,k = <span class="number">0</span>; i &lt;= r; i++, k++) q[i] = tmp[k];<span class="comment">//将临时数组中的数据取回  </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;<span class="comment">//n个数字</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);<span class="comment">//读入</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q , <span class="number">0</span> , n<span class="number">-1</span>);<span class="comment">//排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n; i++) cout &lt;&lt; q[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><blockquote>
-<p>在排好序的一组数据中,从中间的数据开始,如果中间的值比目标值小,则目标值在选取值的右边,反之则在左边  直到找到目标值  </p>
-</blockquote>
-<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>给定一个按照升序排列的长度为 n 的整数数组，以及 q 个查询。</p>
-<p>对于每个查询，返回一个元素 k 的起始位置和终止位置（位置从 0 开始计数）。</p>
-<p>如果数组中不存在该元素，则返回 -1 -1。</p>
-<hr>
-<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
-<p>第二行包含 n 个整数（均在 1∼10000 范围内），表示完整数组。</p>
-<p>接下来 q 行，每行包含一个整数 k，表示一个询问元素。</p>
-<hr>
-<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>共 q 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
-<p>如果数组中不存在该元素，则返回 -1 -1。</p>
-<h5 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h5><p>1≤n≤100000<br>1≤q≤10000<br>1≤k≤10000  </p>
-<hr>
-<h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><p>6 3<br>1 2 2 3 3 4<br>3<br>4<br>5  </p>
-<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><p>3 4<br>5 5<br>-1 -1  </p>
-<hr>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, m;<span class="comment">//n个数字,询问个数m</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;q[i]);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    <span class="type">int</span> x;<span class="comment">//询问的数字x</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>,r = n - <span class="number">1</span>; <span class="comment">//左右端点</span></span><br><span class="line"><span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(q[l]!=x) <span class="built_in">printf</span>(<span class="string">&quot;-1 -1\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,l);</span><br><span class="line">        l = <span class="number">0</span>,r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r) + <span class="number">1</span> &gt;&gt; <span class="number">1</span> ; <span class="comment">// 避免因为l + r 是奇数(即这组数据为偶数个)而引起的边界问题 </span></span><br><span class="line">                                        <span class="comment">//如果数据个数为偶数 每次取得的分界点应该不同 因此+1之后再/2(也可以&gt;&gt;1之后+0.5)</span></span><br><span class="line">            <span class="keyword">if</span>(q[mid] &lt;= x) l = mid;</span><br><span class="line">            <span class="keyword">else</span> r = mid <span class="number">-1</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, l);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这道题是找目标数字的左右范围,即找到左起点和右终点  </p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">while</span>(l&lt;r)&#123;    </span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> l = mid + <span class="number">1</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码是找到大于等于x的第一个数 即左端点    </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -851,29 +861,62 @@ using namespace std;
 <hr>
 <hr>
 <hr>
-<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#108;&#117;&#120;&#105;&#x61;&#111;&#103;&#117;&#111;&#x6e;&#55;&#x30;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#108;&#117;&#120;&#105;&#x61;&#111;&#103;&#117;&#111;&#x6e;&#55;&#x30;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a>   </p>
+<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接组成为-&gt;<a href="https://www.bilibili.com/video/BV1PN411X7QW/" title="红色高跟鞋">中括号内为链接显示名,括号内为地址</a>&lt;-<br>用尖括号可以直接点击<br><a href="mailto:&#108;&#x75;&#120;&#105;&#x61;&#x6f;&#103;&#117;&#x6f;&#x6e;&#55;&#48;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#108;&#x75;&#120;&#105;&#x61;&#x6f;&#103;&#117;&#x6f;&#x6e;&#55;&#48;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a>   </p>
 ]]></content>
       <tags>
         <tag>MarkDown</tag>
       </tags>
   </entry>
   <entry>
-    <title>运算符重载</title>
-    <url>/2023/03/28/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">寂静的雨夜</div>  
+    <title>quick_sort/merge_sort/二分</title>
+    <url>/2022/06/26/quick-sort/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #b8a6d9;text-align: center">再回头,你不许</br>
+如曾经不登对</div>  
 
-<span id="more"></span>
+<span id="more"></span>  
 
 <hr>
-<blockquote>
-<p>由于sort函数使用<code>&lt;</code>运算符,但是无法直接将结构体进行排序,因此需要重载<code>&lt;</code>.</p>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><blockquote>
+<p>先选定一个x,将所有比x小的数放在左半部分,将所有比x大的数放在右半部分<br>再递归处理即可  </p>
 </blockquote>
-<h3 id="外部定义函数"><a href="#外部定义函数" class="headerlink" title="外部定义函数"></a>外部定义函数</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;</span><br><span class="line">&#125; e[M]</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(Edge a,Edge b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w&lt;b.w; <span class="comment">//升序 以w的大小排列</span></span><br><span class="line">    <span class="comment">//return a.w&gt;b.w; 降序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">100000</span>;</span><br><span class="line">    <span class="built_in">sort</span>(e,e+m,cmp);<span class="comment">//第三个参数自定义比较函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;<span class="comment">//数据范围1~1000000</span></span><br><span class="line"><span class="type">int</span> n;<span class="comment">//数字个数</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="comment">//l是左边界,r是右边界</span></span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;<span class="comment">//如果范围内数组只有一个数或没有数,直接返回</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> x=q[(l+r)/<span class="number">2</span>];<span class="comment">//分界值x取数组中间值</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[++i]&lt;x);<span class="comment">//左指针右移 直到当前值大于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(q[--j]&gt;x);<span class="comment">//右指针左移 直到当前值小于x</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i&lt;j) <span class="built_in">swap</span>(q[i],q[j]); <span class="comment">//交换ij处的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">quick_sort</span>(q,l,j);<span class="comment">//递归处理左半部分</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,j+<span class="number">1</span>,r);<span class="comment">//递归处理右半部分</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">quick_sort</span>(q,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d, q[i]);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="结构体内部重载运算符"><a href="#结构体内部重载运算符" class="headerlink" title="结构体内部重载运算符"></a>结构体内部重载运算符</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;</span><br><span class="line"> 	<span class="type">const</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edge &amp;c)&#123;</span><br><span class="line"> 	<span class="keyword">return</span> w&lt;c.w;<span class="comment">//升序排列</span></span><br><span class="line"> 	<span class="comment">//return w&gt;c.w;降序</span></span><br><span class="line"> 	&#125;</span><br><span class="line">&#125; e[M]  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">100000</span>;</span><br><span class="line">    <span class="built_in">sort</span>(e,e+m);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果分界值选择起点值q[l],数据过强会报错,故选择中间值q[(l+r)&#x2F;2]</p>
+</blockquote>
+<hr>
+<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><blockquote>
+<p>将数组递归成只含一个数字的可排序的区间,最后在两个区间的数据从小到大放进tmp数组,再放进数组里</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> q[N],tmp[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(<span class="type">int</span> q[], <span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;<span class="comment">//取分界点</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q, l, mid),<span class="built_in">merge_sort</span>(q, mid + <span class="number">1</span>, r);<span class="comment">//递归到最小的区间,从最底层的两个数据排好序,再回到四个数据排好序,始终是两组数据之间的归并,  </span></span><br><span class="line">                                                    <span class="comment">//归并的规模从小到大,2-&gt;4-&gt;8...  </span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = l,j=mid + <span class="number">1</span>,k = <span class="number">0</span>; <span class="comment">//i是左起点,j是右起点  </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(q[i] &lt;= q[j]) tmp[k++] = q[i++]; <span class="comment">//两组数据在各自的内部都已经排好序,从小到大比较两组数据之间的大小就可以将整个数组排序  </span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> tmp[k++] = q[j++];</span><br><span class="line">    &#125;<span class="comment">//归并的过程,从小到大放入</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= mid) tmp[k++] = q[i++];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j &lt;= r) tmp[k++] = q[j++];<span class="comment">//处理剩下的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = l,k = <span class="number">0</span>; i &lt;= r; i++, k++) q[i] = tmp[k];<span class="comment">//将临时数组中的数据取回  </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;<span class="comment">//n个数字</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);<span class="comment">//读入</span></span><br><span class="line">    <span class="built_in">merge_sort</span>(q , <span class="number">0</span> , n<span class="number">-1</span>);<span class="comment">//排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n; i++) cout &lt;&lt; q[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="结构体外部重载运算符"><a href="#结构体外部重载运算符" class="headerlink" title="结构体外部重载运算符"></a>结构体外部重载运算符</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;</span><br><span class="line">&#125; e[M]  </span><br><span class="line"><span class="type">const</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edge &amp;a,<span class="type">const</span> Edge &amp;b)&#123;</span><br><span class="line"> 	<span class="keyword">return</span> a.w&lt;b.w;<span class="comment">//升序排列</span></span><br><span class="line"> 	<span class="comment">//return w&gt;c.w;降序</span></span><br><span class="line"> 	&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">100000</span>;</span><br><span class="line">    <span class="built_in">sort</span>(e,e+m);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><blockquote>
+<p>在排好序的一组数据中,从中间的数据开始,如果中间的值比目标值小,则目标值在选取值的右边,反之则在左边  直到找到目标值  </p>
+</blockquote>
+<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>给定一个按照升序排列的长度为 n 的整数数组，以及 q 个查询。</p>
+<p>对于每个查询，返回一个元素 k 的起始位置和终止位置（位置从 0 开始计数）。</p>
+<p>如果数组中不存在该元素，则返回 -1 -1。</p>
+<hr>
+<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
+<p>第二行包含 n 个整数（均在 1∼10000 范围内），表示完整数组。</p>
+<p>接下来 q 行，每行包含一个整数 k，表示一个询问元素。</p>
+<hr>
+<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>共 q 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
+<p>如果数组中不存在该元素，则返回 -1 -1。</p>
+<h5 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h5><p>1≤n≤100000<br>1≤q≤10000<br>1≤k≤10000  </p>
+<hr>
+<h5 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h5><p>6 3<br>1 2 2 3 3 4<br>3<br>4<br>5  </p>
+<h5 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h5><p>3 4<br>5 5<br>-1 -1  </p>
+<hr>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, m;<span class="comment">//n个数字,询问个数m</span></span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;q[i]);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    <span class="type">int</span> x;<span class="comment">//询问的数字x</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>,r = n - <span class="number">1</span>; <span class="comment">//左右端点</span></span><br><span class="line"><span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(q[l]!=x) <span class="built_in">printf</span>(<span class="string">&quot;-1 -1\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,l);</span><br><span class="line">        l = <span class="number">0</span>,r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r) + <span class="number">1</span> &gt;&gt; <span class="number">1</span> ; <span class="comment">// 避免因为l + r 是奇数(即这组数据为偶数个)而引起的边界问题 </span></span><br><span class="line">                                        <span class="comment">//如果数据个数为偶数 每次取得的分界点应该不同 因此+1之后再/2(也可以&gt;&gt;1之后+0.5)</span></span><br><span class="line">            <span class="keyword">if</span>(q[mid] &lt;= x) l = mid;</span><br><span class="line">            <span class="keyword">else</span> r = mid <span class="number">-1</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, l);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>这道题是找目标数字的左右范围,即找到左起点和右终点  </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">while</span>(l&lt;r)&#123;    </span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(q[mid] &gt;= x) r = mid;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> l = mid + <span class="number">1</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码是找到大于等于x的第一个数 即左端点    </p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>algorithm</tag>
@@ -1052,6 +1095,28 @@ using namespace std;
 ]]></content>
       <tags>
         <tag>with_yu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运算符重载</title>
+    <url>/2023/03/28/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<div style="font-size: 35px; color: #9ac8e2;text-align: center">寂静的雨夜</div>  
+
+<span id="more"></span>
+
+<hr>
+<blockquote>
+<p>由于sort函数使用<code>&lt;</code>运算符,但是无法直接将结构体进行排序,因此需要重载<code>&lt;</code>.</p>
+</blockquote>
+<h3 id="外部定义函数"><a href="#外部定义函数" class="headerlink" title="外部定义函数"></a>外部定义函数</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;</span><br><span class="line">&#125; e[M]</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(Edge a,Edge b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w&lt;b.w; <span class="comment">//升序 以w的大小排列</span></span><br><span class="line">    <span class="comment">//return a.w&gt;b.w; 降序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">100000</span>;</span><br><span class="line">    <span class="built_in">sort</span>(e,e+m,cmp);<span class="comment">//第三个参数自定义比较函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体内部重载运算符"><a href="#结构体内部重载运算符" class="headerlink" title="结构体内部重载运算符"></a>结构体内部重载运算符</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;</span><br><span class="line"> 	<span class="type">const</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edge &amp;c)&#123;</span><br><span class="line"> 	<span class="keyword">return</span> w&lt;c.w;<span class="comment">//升序排列</span></span><br><span class="line"> 	<span class="comment">//return w&gt;c.w;降序</span></span><br><span class="line"> 	&#125;</span><br><span class="line">&#125; e[M]  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">100000</span>;</span><br><span class="line">    <span class="built_in">sort</span>(e,e+m);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体外部重载运算符"><a href="#结构体外部重载运算符" class="headerlink" title="结构体外部重载运算符"></a>结构体外部重载运算符</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;</span><br><span class="line">&#125; e[M]  </span><br><span class="line"><span class="type">const</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edge &amp;a,<span class="type">const</span> Edge &amp;b)&#123;</span><br><span class="line"> 	<span class="keyword">return</span> a.w&lt;b.w;<span class="comment">//升序排列</span></span><br><span class="line"> 	<span class="comment">//return w&gt;c.w;降序</span></span><br><span class="line"> 	&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">100000</span>;</span><br><span class="line">    <span class="built_in">sort</span>(e,e+m);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
       </tags>
   </entry>
 </search>

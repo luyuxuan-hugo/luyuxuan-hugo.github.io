@@ -152,13 +152,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -175,6 +175,161 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://luyuxuan-hugo.github.io/2023/07/10/bustub-p1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="luyuxuan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hugo's Blog">
+      <meta itemprop="description" content="in sorrow,in joy">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hugo's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/10/bustub-p1/" class="post-title-link" itemprop="url">bustub_Project1_Buffer_clock_replacer</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-10 00:57:58 / 修改时间：01:49:39" itemprop="dateCreated datePublished" datetime="2023-07-10T00:57:58+08:00">2023-07-10</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2023/07/10/bustub-p1/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/07/10/bustub-p1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><h5 id="ubuntu-18-04"><a href="#ubuntu-18-04" class="headerlink" title="ubuntu 18.04"></a>ubuntu 18.04</h5><p>略</p>
+<h5 id="project"><a href="#project" class="headerlink" title="project"></a>project</h5><blockquote>
+<p>由于直接clone仓库是2023版,故如下操作</p>
+</blockquote>
+<p>​		</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cmu-db/bustub.git</span><br><span class="line">cd bustub</span><br><span class="line">git log</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>找到对应的commit,我选择的是7704f90cb1d9f9cc32f648c68b9fa84952bf1796</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 7704f90cb1d9f9cc32f648c68b9fa84952bf1796</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>即可倒退到2019的版本</p>
+</blockquote>
+<h5 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h5><blockquote>
+<p>默认的cmake版本为3.10,需使用3.13及以上</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cmake --version</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看cmake版本</span></span><br><span class="line"></span><br><span class="line">sudo apt remove --purge cmake</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">卸载旧版本</span></span><br><span class="line"></span><br><span class="line">wget https://cmake.org/files/v3.13/cmake-3.13.0.tar.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">下载压缩包</span></span><br><span class="line"></span><br><span class="line">tar -xzvf cmake-3.13.0.tar.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">解压</span></span><br><span class="line"></span><br><span class="line">cd cmake-3.13.0</span><br><span class="line"></span><br><span class="line">./bootstrap</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h5 id="build"><a href="#build" class="headerlink" title="build"></a>build</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd bustub</span><br><span class="line">sudo build_support/packages.sh</span><br><span class="line"></span><br><span class="line">mkdir build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<h3 id="clock-replacer"><a href="#clock-replacer" class="headerlink" title="clock_replacer"></a>clock_replacer</h3><h4 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h4><p><code>ClockReplacer</code> 类内部维护了一个 <code>frame</code> 的集合，集合大小和缓冲池的大小一致。</p>
+<p>需要实现四个函数:</p>
+<ul>
+<li><code>Victim(T*)</code> : Starting from the current position of clock hand, find the first frame that is both in the <code>ClockReplacer</code> and with its ref_flag_flag flag set to <code>false</code>. If a frame is in the <code>ClockReplacer</code>, but its ref_flag_flag flag is set to <code>true</code>, change it to <code>false</code> instead. This should be the only method that updates the clock hand.</li>
+<li><code>Pin(T)</code> : This method should be called after a page is pinned to a frame in the <code>BufferPoolManager</code>. It should remove the frame containing the pinned page from the <code>ClockReplacer</code>.</li>
+<li><code>Unpin(T)</code> : This method should be called when the <code>pin_count</code> of a page becomes 0. This method should add the frame containing the unpinned page to the <code>ClockReplacer</code>.</li>
+<li><code>Size()</code> : This method returns the number of frames that are currently in the <code>ClockReplacer</code>.</li>
+</ul>
+<p>添加了三个变量:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">frame_id_t</span> clock_hand_ = <span class="number">0</span>;<span class="comment">//时钟指针成员</span></span><br><span class="line"></span><br><span class="line">std::vector&lt;std::tuple&lt;<span class="type">bool</span>, <span class="type">bool</span>&gt;&gt; frames_; <span class="comment">//tuple中的两个bool变量分别表示是否在													//CLockreplacer中和ref_flag_flag_flag</span></span><br><span class="line"></span><br><span class="line">std::shared_mutex mutex_;  <span class="comment">//读写锁</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="victim"><a href="#victim" class="headerlink" title="victim"></a>victim</h4><p>这个函数是将ClockReplacer中满足条件的<code>frame</code>移出内存,条件如下</p>
+<ul>
+<li>在<code>Clockreplacer</code>中,即当前没有任何的线程访问该<code>frame</code></li>
+<li><code>ref_flag_flag_flag == false</code> 时间替换策略的本质就是,<code>ref_flag_flag_flag</code>表示当前帧是否被修改过,<code>victim()</code>在遍历所有帧时,如果该帧的<code>ref_flag_flag_flag == true</code>,那么表示最近被访问过,如果将其改为<code>false</code>,并且下次<code>clock_hand</code>访问到该<code>frame</code>时仍然为<code>false</code>表示其最近并未被访问过,即可移出内存</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ClockReplacer::Victim</span><span class="params">(<span class="type">frame_id_t</span> *frame_id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function">std::lock_guard&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> &amp;[in_cp,ref_flag_flag_flag] = frames_[clock_hand_];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (in_cp) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (ref_flag_flag_flag) &#123;</span><br><span class="line"></span><br><span class="line">        ref_flag_flag_flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        *frame_id = clock_hand_;</span><br><span class="line"></span><br><span class="line">        in_cp = <span class="literal">false</span>; <span class="comment">//移出内存</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    clock_hand_ = (clock_hand_ + <span class="number">1</span>) % frames_.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="pin"><a href="#pin" class="headerlink" title="pin"></a>pin</h4><p>这个函数是将指定的<code>frame</code>调入<code>BufferPool</code>,</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ClockReplacer::Pin</span><span class="params">(<span class="type">frame_id_t</span> frame_id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">assert</span>(<span class="built_in">static_cast</span>&lt;<span class="type">size_t</span>&gt;(frame_id) &lt; frames_.<span class="built_in">size</span>());<span class="comment">//断言,frame_id要小于frames数量</span></span><br><span class="line"></span><br><span class="line">  <span class="function">std::lock_guard&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> &amp;[in_cp, ref_flag_flag] = frames_[frame_id];</span><br><span class="line"></span><br><span class="line">  in_cp = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  ref_flag_flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="unpin"><a href="#unpin" class="headerlink" title="unpin"></a>unpin</h4><p>这个函数是线程调用该<code>frame</code>完毕,将其调入<code>Clockreplacer</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ClockReplacer::Unpin</span><span class="params">(<span class="type">frame_id_t</span> frame_id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">assert</span>(<span class="built_in">static_cast</span>&lt;<span class="type">size_t</span>&gt;(frame_id) &lt; frames_.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">  <span class="function">std::lock_guard&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> &amp;[in_cp, ref_flag] = frames_[frame_id];</span><br><span class="line"></span><br><span class="line">  in_cp = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  ref_flag = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Size"><a href="#Size" class="headerlink" title="Size"></a>Size</h4><p>这个函数获取当前ClockReplacer中所有<code>frame</code>的数量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ClockReplacer::Size</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">std::shared_lock&lt;std::shared_mutex&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="type">size_t</span> size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;[in_cp, ref_flag] : frames_) &#123;</span><br><span class="line"></span><br><span class="line">    size += in_cp;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> size;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="test"><a href="#test" class="headerlink" title="test"></a>test</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make clock_replacer_test</span><br><span class="line"></span><br><span class="line">./test/clock_replacer_test</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1193,118 +1348,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://luyuxuan-hugo.github.io/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="luyuxuan">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hugo's Blog">
-      <meta itemprop="description" content="in sorrow,in joy">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Hugo's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/" class="post-title-link" itemprop="url">html记忆重构(四)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-30 16:54:32" itemprop="dateCreated datePublished" datetime="2022-05-30T16:54:32+08:00">2022-05-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-06-23 16:44:58" itemprop="dateModified" datetime="2023-06-23T16:44:58+08:00">2023-06-23</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <div style="font-size: 35px; color: #b8a6d9;text-align: center">那一刻我们的吻,像轰鸣的月相</div>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/30/html%E8%AE%B0%E5%BF%86%E9%87%8D%E6%9E%84(%E5%9B%9B)/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1329,13 +1372,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">23k</span>
+    <span title="站点总字数">26k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">43 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
